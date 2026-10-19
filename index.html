@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c1931">
+  <meta name="description" content="Private daily sales report desk for K. Abirthan. Track cumulative sales and copy the company report in one tap.">
+  <title>Abirthan Sales Pro | Sales & Price Book</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Sales Desk">
+  <style>
+    :root { --ink:#10213d; --muted:#63718a; --blue:#155cf1; --blue-soft:#eaf0ff; --teal:#098e78; --teal-soft:#e1f6f0; --bg:#f3f6fc; --white:#fff; --line:#e5eaf2; --danger:#d72d48; --amber:#ad6913; --radius:17px; }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;-webkit-font-smoothing:antialiased}
+    button,input,select,textarea{font:inherit} button{cursor:pointer} button:disabled{cursor:not-allowed;opacity:.52} [hidden]{display:none!important}
+    .app{display:flex;min-height:100vh} .sidebar{width:247px;flex:0 0 247px;background:#0b1934;color:#fff;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:26px 15px 18px}
+    .brand{display:flex;align-items:center;gap:11px;padding:5px 11px 25px}.brandmark{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#368cff,#0d51cd);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;box-shadow:0 8px 24px #143c8c70}.brand strong{display:block;font-size:16px;letter-spacing:.1px}.brand small{display:block;color:#95a9cb;font-size:10px;letter-spacing:1.35px;text-transform:uppercase;margin-top:2px}
+    .slabel{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#657fa9;padding:5px 14px;margin-bottom:9px;text-transform:uppercase}
+    .nav{width:100%;border:0;background:transparent;color:#a6b6d1;display:flex;align-items:center;gap:13px;border-radius:11px;text-align:left;padding:14px 15px;margin-bottom:5px;font-weight:650}.nav:hover{background:#162b51;color:#fff}.nav.active{background:#1a386c;color:#fff;box-shadow:inset 3px 0 #54a5ff}
+    .nav svg,.top-icon svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .side-bottom{margin-top:auto;border:1px solid #263b5a;border-radius:14px;padding:15px 13px;background:#102547}.side-bottom .green{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4de2b6;margin-right:6px}.side-bottom strong{font-size:12px}.side-bottom p{color:#9aafcf;line-height:1.6;margin:7px 0 12px;font-size:11px}.side-bottom button{width:100%;background:#223f6d;border:1px solid #3c5b88;color:#fff;border-radius:8px;padding:9px;font-size:12px}
+    .content{flex:1;min-width:0;padding:29px 38px 58px;max-width:1600px;margin:auto;width:100%}.header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px}.eyebrow{display:block;color:var(--blue);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:850;margin-bottom:5px}.header h1{font-size:29px;letter-spacing:-.9px;margin:0;font-weight:800}.header p{color:var(--muted);margin:8px 0 0;font-size:13px}.headright{display:flex;align-items:center;gap:8px}.identity{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 13px;text-align:right}.identity strong{display:block;font-size:12px}.identity span{display:block;font-size:10px;color:var(--muted);margin-top:2px}.avatar{width:42px;height:42px;border-radius:12px;background:#dfe9ff;color:var(--blue);display:grid;place-items:center;font-weight:850;font-size:14px}
+    .section{display:none}.section.active{display:block}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.metric{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:19px 19px 18px;position:relative;overflow:hidden;box-shadow:0 7px 22px #273c6506}.metric::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:#dce6fb}.metric.hero::before{background:#145cf3}.metric.green::before{background:#10ab8c}.metric.orange::before{background:#f59d3b}.metric-title{font-size:11px;color:var(--muted);font-weight:720}.metric-main{font-size:25px;font-weight:840;letter-spacing:-.9px;margin-top:13px;white-space:nowrap}.metric-note{font-size:11px;color:var(--muted);margin-top:7px}.metric-note b{color:#087b67}.bar{height:6px;background:#edf1f8;border-radius:20px;overflow:hidden;margin-top:13px}.bar>div{height:100%;background:linear-gradient(90deg,#155cf1,#6ea3ff);width:0;transition:width .3s}
+    .grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr);gap:19px;align-items:start}.panel{border:1px solid var(--line);background:var(--white);border-radius:var(--radius);box-shadow:0 8px 26px #293b5809;margin-bottom:17px;overflow:hidden}.panelhead{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:20px 22px 17px;border-bottom:1px solid #edf0f6}.panelhead h2{font-size:16px;letter-spacing:-.3px;margin:0}.panelhead p{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.5}.panelbody{padding:22px}.chip{display:inline-flex;align-items:center;gap:6px;border-radius:25px;font-size:10px;white-space:nowrap;color:#117c64;background:var(--teal-soft);padding:7px 10px;font-weight:800}.chip.blue{color:var(--blue);background:var(--blue-soft)}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field{min-width:0}.field.full{grid-column:1/-1}.field label{display:block;font-weight:760;font-size:11px;margin-bottom:7px;color:#2e405f}.field input,.field select{width:100%;border:1px solid #dce3ee;background:#fbfcff;border-radius:10px;padding:12px 12px;color:var(--ink);outline:none;transition:border .2s,box-shadow .2s;min-width:0}.field input:focus,.field select:focus{border-color:#5c90ed;box-shadow:0 0 0 3px #e8efff}.field input[readonly]{background:#f0f4fb;color:#4c5e76}.field input::placeholder{color:#9aa5b6}.field small{display:block;color:var(--muted);line-height:1.5;margin-top:5px;font-size:10px}
+    .subheading{font-size:11px;letter-spacing:1px;color:var(--blue);font-weight:860;text-transform:uppercase;margin:22px 0 14px;display:flex;align-items:center;gap:10px}.subheading:after{content:"";height:1px;background:var(--line);flex:1}.baseline{border:1px solid #cddffd;background:linear-gradient(130deg,#f4f8ff,#fff);border-radius:12px;padding:15px;margin-top:19px}.baseline strong{font-size:12px}.baseline p{line-height:1.55;color:#4d6282;margin:5px 0 14px;font-size:11px}.baseline .checkrow{display:flex;align-items:center;gap:8px;margin-top:11px;font-size:11px;color:#3f5372}.baseline .checkrow input{width:15px;height:15px}.calcstrip{margin-top:17px;background:#f5f8ff;border:1px solid #e0eaff;border-radius:11px;padding:13px 14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.calcstrip span{font-size:11px;color:#516789}.calcstrip strong{font-size:13px;color:var(--blue)}
+    .btns{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.btn{border:1px solid #dce4f0;background:#fff;color:#1e355b;font-weight:760;border-radius:10px;padding:11px 15px;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;transition:transform .1s,box-shadow .2s}.btn:active{transform:scale(.98)}.btn:hover{box-shadow:0 3px 14px #253e6e14}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.whatsapp{background:#0b9771;border-color:#0b9771;color:#fff}.btn.danger{color:var(--danger);border-color:#f4cfda}.btn.block{width:100%}.btn.small{min-height:32px;padding:6px 10px;font-size:11px}.fieldnote{font-size:11px;color:var(--muted);line-height:1.6;margin:13px 0 0}
+    .output{position:sticky;top:20px}.paper{background:#fafcff;border:1px solid #e4eaf4;border-radius:11px;margin:18px 0 16px;padding:19px 17px;white-space:pre-wrap;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:12px;line-height:1.8;color:#1d2e49;min-height:380px}.paper .placeholder{color:#70839f}.notice{background:#fffaf0;border:1px solid #f6deb2;color:#845a21;border-radius:11px;padding:12px 13px;font-size:11px;line-height:1.6;margin-bottom:15px}.oknotice{background:#e9f9f4;border-color:#b9e7d5;color:#157457}.summaryrow{border-top:1px solid #ecf1f7;padding:13px 0;display:flex;justify-content:space-between;font-size:12px;gap:12px}.summaryrow span{color:var(--muted)}.summaryrow strong{font-size:13px}.status{padding:10px 12px;border-radius:9px;font-size:11px;line-height:1.55;background:#f0f4ff;color:#375582;margin-bottom:14px}
+    .table-wrap{overflow-x:auto}.table{border-collapse:collapse;width:100%;font-size:12px;min-width:690px}.table th{text-align:left;text-transform:uppercase;letter-spacing:.8px;color:#758299;background:#f7f9fe;font-size:10px;padding:14px 13px;white-space:nowrap}.table td{padding:13px;border-top:1px solid var(--line);vertical-align:middle}.table tr:hover td{background:#fbfcff}.right{text-align:right}.mono{font-variant-numeric:tabular-nums}.rowActions{display:flex;gap:6px;justify-content:flex-end}.empty{padding:50px 24px;text-align:center;color:#6e7e97;line-height:1.7}.empty b{display:block;color:#213550;margin-bottom:6px;font-size:14px}.historyhead{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}.monthselect{min-width:165px;border:1px solid #d9e3ef;background:#fff;padding:9px 11px;border-radius:8px}
+    .settingswidth{max-width:740px}.dangerzone{background:#fff9fa;border:1px solid #f2d2d9;border-radius:12px;padding:15px;margin-top:17px}.dangerzone strong{color:#ad2a40}.dangerzone p{font-size:11px;color:#805861;line-height:1.6}
+    .lockscreen{position:fixed;z-index:1000;inset:0;background:radial-gradient(circle at 75% 5%,#194e99 0,#102447 34%,#09162e 75%);display:grid;place-items:center;padding:18px}.lockbox{width:min(100%,425px);background:#fff;border-radius:23px;padding:34px 30px;box-shadow:0 25px 75px #0006;text-align:center}.lockbox .biglock{width:65px;height:65px;border-radius:18px;display:grid;place-items:center;background:#e9f0ff;color:var(--blue);font-weight:900;font-size:26px;margin:0 auto 17px}.lockbox h2{font-size:23px;margin:0 0 8px;letter-spacing:-.5px}.lockbox p{color:var(--muted);font-size:12px;line-height:1.65;margin:0 0 22px}.lockbox label{display:block;font-weight:750;text-align:left;font-size:11px;margin:14px 0 7px}.lockbox input{width:100%;border:1px solid #d8e3f0;border-radius:10px;padding:14px;font-size:18px;text-align:center;letter-spacing:8px;outline:none}.lockbox .lockerror{color:var(--danger);font-size:11px;min-height:19px;margin-top:7px}.lockbox .fine{margin-top:16px;font-size:10px;color:#8390a5}.lockbox button{margin-top:12px}
+    .toast{position:fixed;bottom:24px;right:24px;z-index:2000;color:#fff;background:#142a4c;border-radius:12px;box-shadow:0 10px 35px #0825534d;padding:13px 17px;font-size:12px;max-width:min(92vw,420px);display:none}.toast.show{display:block}.footer{text-align:center;color:#9da7b7;font-size:10px;padding:24px}
+    @media(max-width:1150px){.content{padding:25px 23px 50px}.sidebar{width:210px;flex-basis:210px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:minmax(0,1fr)}.output{position:relative;top:0}}
+    @media(max-width:700px){.app{display:block}.sidebar{height:auto;width:100%;position:sticky;top:0;z-index:50;display:block;padding:9px 10px;background:#0b1934}.brand{padding:4px 6px 9px}.brandmark{width:31px;height:31px;border-radius:10px;font-size:13px}.brand strong{font-size:13px}.brand small{font-size:8px}.slabel,.side-bottom{display:none}.navwrap{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}.nav{flex:1;min-width:0;margin:0;gap:6px;justify-content:center;text-align:center;padding:10px 5px;font-size:10px;white-space:nowrap}.nav svg{width:15px;height:15px;flex-shrink:0}.content{padding:23px 14px 30px}.header{margin-bottom:19px}.header h1{font-size:23px}.header p{font-size:11px}.identity{display:none}.avatar{width:34px;height:34px}.metrics{gap:10px;margin-bottom:15px}.metric{padding:15px 13px;border-radius:13px}.metric-main{font-size:20px}.metric-title{font-size:10px}.metric-note{font-size:10px}.panelhead{padding:17px}.panelbody{padding:17px}.formgrid{gap:12px}.field label{font-size:10.5px}.field input,.field select{padding:12px 10px;font-size:13px}.paper{font-size:11.5px;padding:16px 13px;min-height:300px}.btns .btn{flex:1;white-space:nowrap}.lockbox{padding:27px 23px}.toast{bottom:14px;right:13px;left:13px;max-width:unset}.header .eyebrow{font-size:9px}}
+    @media(max-width:340px){.formgrid{grid-template-columns:1fr}.nav{font-size:9px}.metric-main{font-size:18px}}
+
+    .mode-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.mode-head strong{font-size:12px}
+    .month-backdrop{position:fixed;inset:0;z-index:950;background:#081631bb;display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}
+    .month-dialog{width:min(560px,100%);max-height:92vh;overflow:auto;border-radius:19px;background:#fff;box-shadow:0 24px 95px #030e2770;padding:25px 28px;color:var(--ink)}
+    .month-dialog h2{font-size:23px;letter-spacing:-.55px;margin:2px 0 9px}.month-dialog>p{color:var(--muted);line-height:1.6;font-size:13px;margin:0 0 18px}
+    .month-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:20px}.month-summary div{background:#f3f7fd;border:1px solid #e4ecf7;border-radius:11px;padding:12px}.month-summary span{display:block;color:#61738e;font-size:11px}.month-summary strong{display:block;font-size:17px;margin-top:5px;white-space:nowrap}
+    .month-dialog .field input{width:100%;padding:12px;border:1px solid #dce3ee;border-radius:10px}
+    .history-summary{padding:16px 22px;background:#f6f9ff;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:#4e6080}.history-summary strong{color:#173c81}
+    @media(max-width:600px){.month-dialog{padding:20px}.month-summary strong{font-size:14px}.month-backdrop{padding:12px}}
+
+    /* Monthly printable performance report */
+    .monthly-toolbar .panelhead{align-items:center}.monthly-toolnote{padding:14px 22px;background:#f6f9ff;color:#4e6080;font-size:11px;line-height:1.65}
+    .monthly-sheet{border:1px solid #e2e8f2;border-radius:17px;background:#fff;padding:35px 37px 40px;box-shadow:0 9px 24px #243b6010;color:#1a2e4b;max-width:1150px;margin:0 auto}
+    .monthly-letterhead{border-bottom:3px solid #165ef5;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding-bottom:20px;margin-bottom:22px}
+    .monthly-letterhead small{font-weight:850;letter-spacing:2px;color:#1761df;font-size:10px}.monthly-letterhead h2{font-size:26px;line-height:1.12;letter-spacing:-1px;margin:9px 0}.monthly-letterhead p{margin:0;color:#60718a;font-size:12px}.monthly-tag{font-size:11px;font-weight:850;background:#eaf1ff;color:#155cf1;border-radius:8px;padding:10px 12px;text-align:center;white-space:nowrap}
+    .monthly-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:19px 0}
+    .monthly-kpi{border:1px solid #e3eaf3;border-radius:12px;padding:16px 13px;min-width:0;background:#fbfdff}
+    .monthly-kpi small{font-size:10px;color:#63738d;font-weight:780;display:block}.monthly-kpi b{font-size:21px;line-height:1.3;display:block;letter-spacing:-.5px;margin:7px 0 5px;overflow-wrap:anywhere}.monthly-kpi em{font-size:10px;color:#60748e;font-style:normal;line-height:1.5;display:block}
+    .monthly-kpi.emph{background:#edf4ff;border-color:#bfd2fa}.monthly-kpi.emph b{color:#154fc2}.monthly-kpi.good{background:#e8faf3;border-color:#c8ecdf}.monthly-kpi.good b{color:#08765f}
+    .monthly-section-title{font-weight:850;letter-spacing:.25px;border-bottom:1px solid #e7ecf3;padding:15px 0 10px;font-size:14px;margin:18px 0 13px}
+    .monthly-progress{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin:13px 0 20px}.monthly-progress label{display:flex;justify-content:space-between;font-size:11px;color:#526684;margin-bottom:7px}.monthly-progress .track{height:9px;border-radius:20px;background:#e9eff7;overflow:hidden}.monthly-progress .fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#165cf0,#71a5ff)}.monthly-progress .fill.green{background:linear-gradient(90deg,#0b9b77,#64cead)}
+    .monthly-callout{background:#f4f8ff;border:1px solid #dce8ff;border-left:4px solid #3a82ff;border-radius:11px;padding:15px 18px;font-size:12px;line-height:1.7;color:#30496b;margin:12px 0 20px}
+    .monthly-secondary{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:10px 0 15px}.monthly-secondary .item{border:1px solid #e8edf5;padding:13px;border-radius:10px}.monthly-secondary .item span{font-size:10px;color:#64758f;display:block}.monthly-secondary .item strong{font-size:16px;display:block;margin-top:4px}
+    .monthly-table{width:100%;border-collapse:collapse;font-size:11px}.monthly-table th{background:#edf3fc;color:#355174;font-size:10px;letter-spacing:.25px;padding:10px 9px;text-align:left}.monthly-table td{padding:10px 9px;border-bottom:1px solid #e8eef4;vertical-align:top}.monthly-table td.num,.monthly-table th.num{text-align:right;font-variant-numeric:tabular-nums}.monthly-table .total{font-weight:850;background:#f4f8ff}
+    .monthly-table tr{break-inside:avoid;page-break-inside:avoid}.monthly-table thead{display:table-header-group}
+    .monthly-note{font-size:10px;color:#60728b;line-height:1.65;margin:14px 0}.monthly-signoff{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #d6e1f0;margin-top:28px;padding-top:14px;color:#60738e;font-size:10px}
+    .monthly-empty{text-align:center;padding:65px 15px;color:#73829b;font-size:13px}.monthly-empty b{display:block;font-size:18px;color:#243957;margin-bottom:8px}
+    .monthly-status{display:inline-block;background:#e6f7ef;color:#0d8059;padding:3px 8px;border-radius:18px;font-weight:800;font-size:10px}.monthly-status.warn{background:#fff0dd;color:#ad6913}
+    @media(max-width:800px){.monthly-sheet{padding:22px 17px}.monthly-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.monthly-secondary{grid-template-columns:repeat(2,minmax(0,1fr))}.monthly-progress{grid-template-columns:1fr}.monthly-letterhead h2{font-size:20px}.monthly-letterhead{align-items:flex-start}.monthly-kpi b{font-size:18px}.monthly-table{min-width:630px}.monthly-table-scroll{overflow:auto}.monthly-tag{font-size:9px}.monthly-toolbar .btns{width:100%}.monthly-toolbar select{flex:1}}
+    @media print {
+      .monthly-daily-block{break-before:page;page-break-before:always}
+      @page{size:A4 portrait;margin:12mm 10mm 13mm}
+      html,body{height:auto!important;background:#fff!important;color:#10233d!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+      #lockscreen,.sidebar,.header,.footer,.monthly-toolbar,#toast,#monthModal{display:none!important}
+      #app{display:block!important;min-height:0!important}.content{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+      .section{display:none!important}#section-monthly{display:block!important}
+      .monthly-sheet{display:block!important;max-width:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;margin:0!important;padding:0!important}
+      .monthly-letterhead{margin:0 0 11px;padding-bottom:10px}.monthly-letterhead h2{font-size:21px}
+      .monthly-kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0}.monthly-kpi{padding:9px;border-radius:7px;break-inside:avoid}.monthly-kpi b{font-size:15px}.monthly-kpi small{font-size:8px}.monthly-kpi em{font-size:8px}
+      .monthly-section-title{font-size:12px;margin:13px 0 6px;padding:9px 0 6px;break-after:avoid}
+      .monthly-progress{grid-template-columns:1fr 1fr;gap:11px;margin:9px 0}.monthly-callout{font-size:10px;line-height:1.5;padding:9px 11px;margin:7px 0}
+      .monthly-secondary{grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}.monthly-secondary .item{padding:8px}.monthly-secondary .item strong{font-size:13px}.monthly-secondary .item span{font-size:8px}
+      .monthly-table-scroll{overflow:visible!important}.monthly-table{min-width:0!important;font-size:8.5px;width:100%}.monthly-table th{font-size:8px;padding:5px 4px}.monthly-table td{padding:5px 4px}
+      .monthly-note,.monthly-signoff{font-size:9px}.monthly-status{font-size:8px}.monthly-sheet tr,.monthly-kpi,.monthly-callout{break-inside:avoid;page-break-inside:avoid}
+    }
+  
+    .price-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:4px;margin-bottom:18px}.hero-box{background:linear-gradient(135deg,#0f2c63,#1c64f2);color:#fff;border-radius:20px;padding:18px 18px 16px;box-shadow:0 14px 36px rgba(20,61,140,.18)}.hero-box h3{margin:0 0 8px;font-size:20px}.hero-box p{margin:0;color:#d9e5ff;line-height:1.6}.hero-mini{background:#fff;border:1px solid #dfe7f2;border-radius:20px;padding:16px 17px}.hero-mini h4{margin:0 0 10px;font-size:15px}.hero-mini ul{margin:0;padding-left:18px;color:#4b5d78;line-height:1.8;font-size:13px}
+    .price-toolbar{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:end;margin:18px 0 12px}
+    .price-search-wrap{flex:1;min-width:260px}.price-search-wrap label{display:block;font-size:12px;font-weight:800;margin-bottom:7px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px}
+    #priceSearch{width:100%;padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(16,33,61,.03)}
+    .price-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .quick-tags{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 16px}.qtag{border:1px solid #d6e2ff;background:#f7faff;color:#2352ad;padding:9px 12px;border-radius:999px;font-weight:800}
+    .qtag:hover,.qtag.active{background:#e9f0ff;border-color:#93b6ff}
+    .price-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:10px 0 14px}
+    .price-stat{background:#f8fbff;border:1px solid #e4edfb;border-radius:18px;padding:15px 16px}.price-stat span{display:block;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px}.price-stat strong{display:block;margin-top:6px;font-size:21px;letter-spacing:-.5px}.price-stat small{display:block;color:#45617f;margin-top:5px;line-height:1.5}
+    .price-results-note{font-size:12px;color:var(--muted);margin-bottom:10px}
+    .price-table-wrap{display:block}.price-cards{display:none}
+    .price-name{min-width:240px}.price-name b{display:block}.price-name small{display:block;color:var(--muted);margin-top:4px}
+    .discount-stack{display:flex;flex-direction:column;gap:5px;min-width:220px}.dline{display:flex;justify-content:space-between;gap:12px;font-size:12px;align-items:flex-start}.dline b{font-weight:800;text-align:right}.muted{color:var(--muted)}
+    .pilltiny{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:800;background:#eef4ff;color:#2352ad}.pilltiny.good{background:#e6f8f2;color:#0b7f67}.pilltiny.warn{background:#fff4df;color:#9f6710}.pilltiny.purple{background:#f2ebff;color:#6941c6}
+    .case-box{display:flex;align-items:center;justify-content:center;min-width:74px;height:42px;border-radius:12px;background:#f5f7fc;border:1px solid #e5ebf3;font-weight:800}
+    .price-row-highlight{background:#fcfdff}
+    @media (max-width:1080px){.price-hero{grid-template-columns:1fr}.price-stats{grid-template-columns:repeat(3,minmax(0,1fr));}}
+    @media (max-width:980px){.price-stats{grid-template-columns:repeat(2,minmax(0,1fr));}.price-table-wrap{display:none}.price-cards{display:grid;gap:12px}.price-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 6px 22px rgba(16,33,61,.05)}.price-card .top{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.price-card h3{margin:0;font-size:16px}.price-card .code{color:var(--muted);font-size:12px;margin-top:3px}.price-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.mini{background:#f7f9fd;border:1px solid #e8edf5;border-radius:12px;padding:10px}.mini span{display:block;color:var(--muted);font-size:11px}.mini strong{display:block;margin-top:5px;font-size:15px}.price-discounts{margin-top:12px;border-top:1px dashed #dfe7f1;padding-top:10px}.price-search-wrap{min-width:100%}}
+    @media (max-width:640px){.price-stats{grid-template-columns:1fr}.price-actions{width:100%}.price-actions .btn{flex:1}}
+
+  
+/* ===== PREMIUM V3 VISUAL SYSTEM ===== */
+:root{--ink:#1b2544;--muted:#7e89a1;--blue:#5855e8;--blue-soft:#eeedff;--teal:#0c9d82;--teal-soft:#e9faf4;--bg:#f5f6fb;--white:#fff;--line:#e8eaf3;--radius:20px}
+body{background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.sidebar{width:252px;flex-basis:252px;background:linear-gradient(166deg,#101832,#18234a 60%,#241d52);padding:27px 16px 22px;box-shadow:7px 0 34px #131d4b0c}
+.brand{padding:5px 10px 32px}.brandmark{background:linear-gradient(140deg,#7871ff,#ad76f6);box-shadow:0 10px 23px #735dff5c;border-radius:15px;font-size:23px}.brand strong{font-size:17px;letter-spacing:-.4px}.brand small{font-size:10px;color:#aab3e0}
+.slabel{color:#8993c1;letter-spacing:1.7px}.nav{color:#aeb8d9;border:1px solid transparent;border-radius:13px;padding:13px 14px;margin-bottom:7px;transition:background .18s,transform .18s}.nav:hover{background:#ffffff13;color:#fff;transform:translateX(2px)}.nav.active{background:linear-gradient(100deg,#6264f4,#765ae8);border-color:#ffffff20;color:#fff;box-shadow:0 8px 23px #0b0e3840}
+.side-bottom{background:#ffffff0b;border-color:#ffffff1b;border-radius:17px}.side-bottom p{color:#abb5d8}
+.content{max-width:1580px;padding:34px 37px 60px}.header{margin-bottom:26px}.header h1{font-size:clamp(25px,3vw,34px);letter-spacing:-1px;font-weight:850}.header p{color:#8490a6}.eyebrow{color:#6d60e5;letter-spacing:1.5px}
+.metric{border:1px solid #e8eaf5;border-radius:21px;background:white;box-shadow:0 11px 30px #1d275708;padding:22px 21px}.metric.hero{background:linear-gradient(125deg,#565de9,#7a5de9);color:white;border-color:transparent;box-shadow:0 14px 32px #625aef2e}.metric.hero .metric-title,.metric.hero .metric-note{color:#e5e6ff}.metric-main{letter-spacing:-.6px}.metric.green{background:linear-gradient(130deg,#f0fff9,#fff)}.metric.orange{background:linear-gradient(130deg,#fff9f1,#fff)}
+.panel{border-radius:22px;border:1px solid #e7eaf4;box-shadow:0 12px 35px #18254a09;overflow:hidden}.panelhead{background:#fff;padding:21px 23px;border-bottom:1px solid #eef0f6}.panelhead h2{letter-spacing:-.4px}.panelbody{padding:21px 23px}.field label{font-weight:750;color:#56617b}.field input,.field select,.field textarea,.monthselect{border-radius:12px;border-color:#dfe4f0;background:#fbfcff;min-height:43px}.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid #bbb9ff;outline-offset:1px;border-color:#9894f7}.btn{border-radius:12px;min-height:41px}.btn.primary{background:linear-gradient(110deg,#5b5df1,#7655e8);border-color:transparent;box-shadow:0 7px 17px #6561e62d}.btn.primary:hover{filter:brightness(1.05)}.subheading{color:#6a60e5}.baseline{border-radius:17px;background:#f5f4ff;border-color:#dedbff}.paper{border-radius:15px}.chip.blue{background:#f0efff;color:#6556db}.monthly-sheet{border-radius:20px}
+.mr-inline-box{border:1px solid #dcdcff;background:linear-gradient(130deg,#f9f7ff,#f2f8ff);padding:17px 18px;border-radius:18px;margin:4px 0 17px}.mr-inline-head{display:flex;align-items:center;gap:11px;margin-bottom:13px}.mr-inline-head>span{display:grid;place-items:center;background:#e7e4ff;color:#6855e0;width:37px;height:37px;border-radius:12px;font-size:21px}.mr-inline-head strong{display:block;font-size:14px}.mr-inline-head small{display:block;color:#7e88a1;margin-top:4px;font-size:11px}.mr-inline-result{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:13px 0}.mr-inline-result>div{background:white;border:1px solid #e8e8f7;padding:12px;border-radius:13px}.mr-inline-result small{display:block;font-size:10px;font-weight:800;color:#8590a8}.mr-inline-result strong{display:block;margin-top:7px;font-size:21px;color:#534cd2}
+.pb-hero{position:relative;overflow:visible;background:linear-gradient(115deg,#121b3d 2%,#283371 58%,#5c4aa0);color:white;padding:32px 35px 34px;border-radius:25px;box-shadow:0 18px 43px #20266d2c;isolation:isolate}.pb-orb{position:absolute;pointer-events:none;border-radius:50%;background:#ffffff08;z-index:-1}.pb-orb.one{height:240px;width:240px;right:-70px;top:-85px}.pb-orb.two{height:160px;width:160px;right:180px;bottom:-80px}.pb-hero-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.pb-overline{font-size:10px;letter-spacing:2px;font-weight:850;color:#b8b6ff}.pb-hero-badge{border:1px solid #ffffff36;background:#ffffff1a;border-radius:99px;padding:8px 12px;font-size:10px;font-weight:800;color:#ecedff}.pb-hero h2{font-size:clamp(31px,3.7vw,46px);line-height:1.11;letter-spacing:-1.4px;margin:16px 0 12px}.pb-hero h2 em{font-style:normal;color:#c4b5ff}.pb-hero p{max-width:650px;color:#d3d9f7;font-size:13px;line-height:1.8;margin:0 0 23px}
+.pb-search-area{position:relative;max-width:720px;z-index:30}.pb-searchbox{display:flex;align-items:center;gap:12px;background:white;border-radius:16px;padding:6px 7px 6px 17px;box-shadow:0 9px 25px #0b154a3d}.pb-search-icon{font-size:29px;color:#7164e7;line-height:1}.pb-searchbox input{border:0;outline:0;background:transparent;padding:13px 0;flex:1;min-width:0;color:#20284d;font-size:15px}.pb-searchbox button{border:0;background:#f1f1fd;color:#6e6adb;border-radius:10px;padding:10px 13px;font-weight:850}.pb-suggest{position:absolute;top:calc(100% + 7px);left:0;right:0;max-height:310px;overflow:auto;background:white;color:#18213c;border:1px solid #e7e9f5;border-radius:16px;box-shadow:0 19px 48px #0b154c50;z-index:100}.pb-suggest-head{font-size:10px;font-weight:850;letter-spacing:1px;color:#7c87a1;background:#f6f7ff;padding:12px 16px}.pb-suggest-row{width:100%;display:flex;align-items:center;gap:11px;border:0;border-bottom:1px solid #f0f1f8;background:#fff;padding:12px 15px;text-align:left}.pb-suggest-row:hover{background:#f4f3ff}.pb-suggest-row strong{font-size:13px;display:block;color:#253055}.pb-suggest-row small{font-size:11px;color:#8994aa;display:block;margin-top:4px}.pb-arrow{margin-left:auto;color:#7a6de5;font-size:20px}.pb-empty-mini{padding:20px;color:#8490a4;font-size:12px}.pb-quick{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.pb-quick button{background:#ffffff16;border:1px solid #ffffff38;color:#eef0ff;padding:8px 13px;border-radius:99px;font-weight:750;font-size:11px}.pb-quick button:hover{background:#ffffff30}
+.pb-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:19px 0 25px}.pb-stat{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #e8ebf5;padding:18px;border-radius:18px;box-shadow:0 7px 23px #20285308}.pb-stat-icon{width:45px;height:45px;display:grid;place-items:center;border-radius:13px;font-size:24px}.pb-stat-icon.lavender{background:#efedff;color:#6e61e7}.pb-stat-icon.mint{background:#e7f9f2;color:#089e77}.pb-stat-icon.peach{background:#fff0e9;color:#e18d58}.pb-stat small{font-size:10px;letter-spacing:1px;color:#8c96a8;font-weight:800;display:block}.pb-stat strong{display:block;font-size:23px;letter-spacing:-.6px;margin-top:5px}
+.pb-breadcrumb{display:flex;align-items:center;gap:11px;margin:17px 0;color:#929ab0;font-size:12px}.pb-breadcrumb button{border:0;background:none;color:#6656dd;font-weight:800;padding:6px 0}.pb-breadcrumb strong{color:#334063}.pb-section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:14px 0 17px}.pb-kicker{font-size:10px;color:#7663df;letter-spacing:1.4px;font-weight:850}.pb-section-head h3{font-size:23px;letter-spacing:-.65px;margin:6px 0}.pb-section-head p{font-size:12px;color:#8791a8;margin:0}.pb-export{border:1px solid #dedff4;background:#fff;color:#5b53c6;border-radius:11px;padding:11px 14px;font-size:12px;font-weight:800;white-space:nowrap}
+.pb-group-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.pb-group-card{display:flex;align-items:center;gap:13px;border:1px solid #e6e9f5;background:white;border-radius:18px;padding:17px;text-align:left;box-shadow:0 8px 23px #1e285408;min-width:0;transition:transform .16s,border-color .16s,box-shadow .16s}.pb-group-card:hover{transform:translateY(-2px);border-color:#b5afff;box-shadow:0 12px 30px #6156dd17}.pb-group-symbol{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,#f1efff,#e8eeff);color:#6458df;font-size:22px}.pb-group-text{flex:1;min-width:0}.pb-group-text strong{display:block;color:#253055;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pb-group-text small{display:block;color:#939cb0;margin-top:6px;font-size:11px}.pb-group-chevron{color:#928ae2;font-size:23px}.pb-noresults{padding:24px;background:white;border-radius:16px;color:#8a93a8;grid-column:1/-1}
+.pb-variant-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pb-variant{display:flex;align-items:center;gap:13px;text-align:left;background:white;border:1px solid #e8eaf4;padding:17px;border-radius:17px;min-width:0;box-shadow:0 7px 20px #17285008}.pb-variant:hover,.pb-variant.selected{border-color:#b6a8ff;background:#fbfaff}.pb-variant-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#f0efff;color:#6759e6;font-size:21px}.pb-variant-text{flex:1;min-width:0}.pb-variant-text strong{display:block;font-size:13px;white-space:normal;color:#253052}.pb-variant-text small{display:block;font-size:11px;color:#919bad;margin-top:6px}.pb-variant-price{text-align:right;white-space:nowrap}.pb-variant-price strong{display:block;color:#5b4bd5;font-size:14px}.pb-variant-price small{display:block;color:#8c95aa;font-size:10px;margin-top:6px}
+.pb-detail,.pb-tier-panel,.pb-calc-panel{background:#fff;border:1px solid #e7e9f4;border-radius:22px;padding:22px;box-shadow:0 10px 29px #202d5309;margin-top:18px}.pb-detail-head{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:18px}.pb-detail-head h3{font-size:23px;letter-spacing:-.5px;margin:8px 0}.pb-detail-head p{margin:0;color:#8c97a9;font-size:12px}.pb-detail-icon{width:51px;height:51px;border-radius:15px;display:grid;place-items:center;background:#f0efff;color:#5b4fdb;font-size:28px}.pb-prices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.pb-price{border:1px solid #e9ecf4;background:#f8f9fd;border-radius:15px;padding:17px 15px;min-width:0}.pb-price span{display:block;color:#7e89a0;font-size:11px;font-weight:750}.pb-price strong{display:block;color:#263356;font-size:clamp(15px,1.7vw,22px);margin-top:10px;letter-spacing:-.5px}.pb-price.special{background:#eafaf3;border-color:#d3f2e3}.pb-price.special strong{color:#058965}.pb-last-discount{background:linear-gradient(110deg,#f3efff,#eef4ff);border:1px solid #e8e0ff;border-radius:16px;margin-top:14px;padding:19px 20px;display:flex;justify-content:space-between;align-items:center;gap:15px}.pb-last-discount small{font-size:10px;letter-spacing:.6px;font-weight:850;color:#8276ac;display:block}.pb-last-discount strong{display:block;font-size:30px;color:#6150d2;margin-top:6px}.pb-last-discount p{font-size:12px;color:#716d9a;margin:0;text-align:right}
+.pb-panel-head{display:flex;align-items:center;gap:12px;margin-bottom:17px}.pb-round-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:#f0eeff;color:#6e5ddc;font-size:21px;font-weight:850;flex-shrink:0}.pb-panel-head h3{font-size:18px;letter-spacing:-.4px;margin:0 0 5px}.pb-panel-head p{font-size:12px;color:#8793a9;margin:0}.pb-tier-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.pb-tier{padding:16px 10px;border-radius:14px;border:1px solid #e9ebf4;background:#fafbfe;min-width:0}.pb-tier span{display:block;font-size:10px;font-weight:850;color:#8477d9}.pb-tier strong{display:block;font-size:clamp(14px,1.5vw,18px);color:#2c355a;margin-top:11px;white-space:nowrap}.pb-tier small{display:block;color:#9aa3b4;font-size:10px;margin-top:7px}.pb-tier.accent{background:linear-gradient(140deg,#6158df,#8064e6);border-color:transparent}.pb-tier.accent span,.pb-tier.accent strong,.pb-tier.accent small{color:white}
+.pb-calc-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}.pb-calc-inputs label,.tool-label{display:block;font-size:12px;font-weight:750;color:#67728c}.pb-calc-inputs input,.tool-label input,.tool-label select{display:block;width:100%;border:1px solid #dfe4f0;border-radius:12px;padding:12px 13px;margin-top:8px;background:#fbfcff;outline:0;color:#273252}.pb-calc-inputs input:focus,.tool-label input:focus,.tool-label select:focus{border-color:#8b80f3;box-shadow:0 0 0 3px #8176ef17}.pb-discount-chips{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}.pb-discount-chips button{border:1px solid #e1e2f6;border-radius:99px;padding:8px 12px;background:#f8f8ff;color:#6e65c9;font-weight:800;font-size:11px}.pb-discount-chips button.selected{background:#6359e4;color:white;border-color:#6359e4}.pb-calc-result{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:17px}.pb-calc-result>div{border:1px solid #e9eaf4;border-radius:15px;padding:15px;background:#f9fafe}.pb-calc-result small{display:block;font-size:10px;letter-spacing:.6px;color:#8a94a9;font-weight:850}.pb-calc-result strong{display:block;margin-top:9px;font-size:19px;letter-spacing:-.5px}.pb-calc-result .pb-total{background:#e8faf4;border-color:#c8efdf}.pb-calc-result .pb-total strong{color:#058a65;font-size:23px}.pb-note{display:flex;gap:9px;font-size:11px;line-height:1.7;color:#7b879f;background:#f1f3fc;padding:15px;border-radius:13px;margin-top:16px}.pb-note span{color:#6d61e4;font-size:18px}
+.tool-intro{background:linear-gradient(115deg,#17214b,#574f9c);padding:27px 30px;border-radius:23px;color:white;margin-bottom:19px}.tool-intro h2{font-size:29px;margin:10px 0 9px;letter-spacing:-.7px}.tool-intro p{color:#d4d8f6;line-height:1.7;margin:0}.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.tool-card{border:1px solid #e8eaf4;background:white;border-radius:21px;padding:22px;box-shadow:0 10px 29px #202d5309}.tool-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.tool-result{display:grid;gap:11px;margin-top:19px}.tool-result span{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:800;color:#8590a5;border-bottom:1px solid #f0f1f6;padding-bottom:10px}.tool-result span strong{font-size:14px;color:#303a60}.tool-result div{display:flex;justify-content:space-between;align-items:center;background:#edf9f3;color:#09795c;padding:15px;border-radius:13px;font-size:11px;font-weight:850}.tool-result div strong{font-size:22px}.tool-mr-result{background:linear-gradient(110deg,#f2efff,#eef5ff);border-radius:16px;margin-top:19px;padding:21px}.tool-mr-result small{display:block;color:#8374ac;font-size:10px;font-weight:850}.tool-mr-result strong{display:block;color:#5c50d3;font-size:32px;margin:8px 0}.tool-mr-result p{color:#807f9c;margin:0;font-size:12px}.tool-hint{font-size:11px;line-height:1.6;color:#8a95aa}
+@media(max-width:1200px){.pb-group-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pb-tier-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tool-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.content{padding:20px 14px 45px}.sidebar{width:100%;padding:10px 9px;background:linear-gradient(120deg,#131b3e,#30265e)}.brand{padding:4px 6px 10px}.brandmark{width:36px;height:36px;font-size:20px}.nav{padding:10px 12px;border-radius:11px}.header{margin-bottom:19px}.header h1{font-size:25px}.metric{padding:15px}.panelhead{padding:18px}.panelbody{padding:16px}.pb-hero{padding:24px 19px;border-radius:20px}.pb-hero h2{font-size:34px}.pb-hero p{font-size:12px}.pb-stat-grid{gap:8px}.pb-stat{padding:12px;gap:8px;border-radius:14px}.pb-stat-icon{width:29px;height:29px;font-size:17px;border-radius:9px}.pb-stat small{font-size:8px;letter-spacing:0}.pb-stat strong{font-size:20px}.pb-group-grid,.pb-variant-grid{grid-template-columns:1fr;gap:10px}.pb-section-head{align-items:start;flex-direction:column}.pb-section-head h3{font-size:20px}.pb-detail,.pb-tier-panel,.pb-calc-panel{padding:16px;border-radius:18px}.pb-prices{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.pb-price{padding:14px 12px}.pb-price strong{font-size:18px}.pb-last-discount{flex-direction:column;align-items:start}.pb-last-discount p{text-align:left}.pb-tier-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.pb-tier{padding:12px 8px}.pb-tier strong{font-size:13px}.pb-tier small{font-size:9px}.pb-calc-result{grid-template-columns:repeat(2,minmax(0,1fr))}.pb-calc-result .pb-total{grid-column:1/-1}.tool-card{padding:17px}.tool-intro{padding:23px 20px}.tool-intro h2{font-size:25px}.tool-two{grid-template-columns:1fr 1fr}}
+@media(max-width:390px){.pb-stat{flex-direction:column;align-items:flex-start}.pb-stat small{font-size:8px}.pb-tier-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pb-calc-inputs{grid-template-columns:1fr 1fr}.pb-variant-price strong{font-size:12px}}
+@media(max-width:700px){.sidebar{position:relative!important;top:auto!important;z-index:5!important}.navwrap{display:flex!important;overflow-x:auto!important;gap:7px;padding-bottom:3px;scrollbar-width:thin}.nav{flex:0 0 auto!important;min-width:max-content!important;padding:11px 12px!important;font-size:11px!important;gap:7px!important}.nav svg{width:15px;height:15px}.brand{padding-bottom:12px}.pb-search-area{z-index:20}}
+@media print{.pb-hero,.pb-stat-grid,.pb-breadcrumb,.pb-section-head,.pb-group-grid,.pb-variant-grid,.pb-detail,.pb-tier-panel,.pb-calc-panel,.tool-intro,.tool-grid,.mr-inline-box{display:none!important}}
+
+
+/* Excel-authoritative dealer-to-last pricing guide */
+.pb-five-prices{grid-template-columns:repeat(5,minmax(0,1fr))}
+.pb-price small{display:block;margin-top:8px;color:#7b88a1;font-size:10px;font-weight:700;line-height:1.4}
+.pb-dealer-price{background:#f0f4ff;border-color:#dbe4ff}
+.pb-six-price{background:#f4f0ff;border-color:#e7ddff}
+.pb-tier-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.pb-tier{padding:15px 14px;min-height:100px;display:flex;flex-direction:column;justify-content:center}
+.pb-tier span{font-size:11px;line-height:1.35;color:#606d8a}
+.pb-tier strong{font-size:clamp(15px,1.5vw,20px);margin-top:9px;white-space:normal;overflow-wrap:anywhere}
+.pb-tier small{font-size:10px;line-height:1.45}
+.pb-tier.pb-step-dealer{background:#eaf0ff;border-color:#b8c9ff}
+.pb-tier.pb-step-dealer span{color:#3155c4}
+.pb-tier.pb-step-six{background:#f2ecff;border-color:#d4c4ff}
+.pb-tier.pb-step-six span{color:#6d46b9}
+.pb-tier.pb-step-last{background:#e7fbf2;border-color:#aee9cf}
+.pb-tier.pb-step-last span,.pb-tier.pb-step-last strong{color:#087e60}
+.pb-tier.pb-step-calc{background:#fbfcff;border-color:#e8ecf5}
+.pb-guide-legend{display:flex;gap:8px 17px;flex-wrap:wrap;margin:-1px 0 17px;color:#72809b;font-size:11px;font-weight:750}
+.pb-guide-legend span{display:inline-flex;align-items:center;gap:7px}
+.pb-legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#b9c1d3}
+.pb-legend-dot.dealer{background:#4b74db}.pb-legend-dot.six{background:#9063e4}.pb-legend-dot.last{background:#0baf7f}.pb-legend-dot.calc{background:#b6bfd0}
+.pb-guide-note{font-size:12px;line-height:1.65;color:#65718b;background:#f6f7fc;padding:12px 15px;border-radius:12px;margin-top:14px}
+#pbDiscountChips button:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:1150px){.pb-five-prices{grid-template-columns:repeat(3,minmax(0,1fr))}.pb-tier-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.pb-five-prices{grid-template-columns:repeat(2,minmax(0,1fr))}.pb-tier-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.pb-tier{padding:12px 10px;min-height:95px}.pb-tier strong{font-size:15px}.pb-tier span{font-size:10px}.pb-guide-legend{font-size:10px;gap:8px 11px}}
+@media(max-width:365px){.pb-tier-grid{grid-template-columns:1fr 1fr}.pb-five-prices{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="lockscreen" class="lockscreen" style="display:none" hidden>
+  <div class="lockbox">
+    <div class="biglock">A.</div>
+    <h2 id="lockTitle">Your private sales desk</h2>
+    <p id="lockDesc">Set a 6-digit PIN to protect this sales desk on your device.</p>
+    <form id="lockForm" autocomplete="off">
+      <label for="pinInput">6-digit PIN</label>
+      <input id="pinInput" type="password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" placeholder="••••••" autocomplete="off" required>
+      <div id="confirmWrap"><label for="pinConfirm">Confirm PIN</label><input id="pinConfirm" type="password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" placeholder="••••••" autocomplete="off"></div>
+      <div id="lockError" class="lockerror"></div>
+      <button class="btn primary block" id="unlockBtn" type="submit">Create PIN & Open</button>
+    </form>
+    <p class="fine">PIN protection is local to this browser. Keep a backup of your sales data.</p>
+  </div>
+</div>
+<div class="app" id="app" hidden>
+  <aside class="sidebar">
+    <div class="brand"><span class="brandmark">✦</span><div><strong>Abirthan Sales</strong><small>Premium Sales Workspace</small></div></div>
+    <div class="slabel">Workspace</div>
+    <div class="navwrap">
+      <button class="nav active" data-nav="entry"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg>Daily Entry</button>
+      <button class="nav" data-nav="monthly"><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5zM9 7h6M9 11h6M9 15h3"/></svg>Monthly PDF</button>
+      <button class="nav" data-nav="prices"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 4v6M17 4v6M5 11h14v8H5zM8 15h3M13 15h3"/></svg>Price Book</button>
+      <button class="nav" data-nav="tools"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 9h8M8 13h3M14 13h2M8 17h8"/></svg>Sales Calculators</button>
+      <button class="nav" data-nav="history"><svg viewBox="0 0 24 24"><path d="M4 4v6h6M4 10a8 8 0 1 1 1 6M12 7v5l3 2"/></svg>History</button>
+      <button class="nav" data-nav="settings"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.2 2.2m8.4 8.4 2.2 2.2m0-12.8-2.2 2.2M7.8 16.2l-2.2 2.2"/><circle cx="12" cy="12" r="4"/></svg>Settings</button>
+    </div>
+    <div class="side-bottom"><strong><span class="green"></span>Local private workspace</strong><p>Reports stay on this browser. Export a backup regularly to avoid losing your records.</p><button id="sideLock" type="button">Lock workspace</button></div>
+  </aside>
+  <main class="content">
+    <header class="header"><div><span class="eyebrow">SMART SALES WORKSPACE</span><h1 id="pageTitle">Sales overview</h1><p id="pageSub">Create accurate company-format reports in seconds.</p></div><div class="headright"><div class="identity"><strong>K. Abirthan</strong><span>Sales workspace</span></div><div class="avatar">KA</div></div></header>
+    <section class="section active" id="section-entry">
+      <div class="metrics">
+        <div class="metric hero"><div class="metric-title">Monthly target</div><div id="mTarget" class="metric-main">Rs. 5.6M</div><div class="metric-note">Changes with each month</div></div>
+        <div class="metric green"><div class="metric-title">Cumulative sales</div><div id="mCum" class="metric-main">—</div><div id="mCumNote" class="metric-note">Enter your opening total</div><div class="bar"><div id="mProgress"></div></div></div>
+        <div class="metric"><div class="metric-title">Daily plan</div><div id="mPlan" class="metric-main">Rs. 250K</div><div class="metric-note">Daily sales goal</div></div>
+        <div class="metric orange"><div class="metric-title">Outlet base (PLC)</div><div id="mPlc" class="metric-main">68</div><div class="metric-note">Coverage calculated automatically</div></div>
+      </div>
+      <div class="grid">
+        <div>
+          <div class="panel"><div class="panelhead"><div><h2>New daily sales entry</h2><p>Enter your numbers. Percentages & cumulative totals are calculated.</p></div><span class="chip blue">LIVE CALCULATION</span></div><div class="panelbody">
+            <form id="reportForm" novalidate>
+              <div class="formgrid">
+                <div class="field"><label for="date">Report date *</label><input id="date" type="date" required></div>
+                <div class="field"><label for="route">Route *</label><input id="route" type="text" maxlength="90" placeholder="e.g. KKS Jaffna" required></div>
+                <div class="field"><label for="dayAch">Day achievement (Rs.) *</label><input id="dayAch" type="number" min="0" step="1" inputmode="numeric" placeholder="285571" required></div>
+                <div class="field"><label for="prc">PRC / Shops visited *</label><input id="prc" type="number" min="0" step="1" inputmode="numeric" placeholder="30" required></div>
+                <div class="field"><label for="dailyBills">Bills issued today (optional)</label><input id="dailyBills" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g. 30"><small>Monthly bill target: 30/day. PRC is not automatically counted as bills.</small></div>
+                <div class="field"><label for="tlc">TLC value</label><input id="tlc" type="number" min="0" step="0.01" inputmode="decimal" placeholder="1.67"><small>Enter TLC supplied by the company.</small></div>
+                <div class="field"><label for="newOutlet">New outlet visits</label><input id="newOutlet" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></div>
+              </div>
+              <div class="baseline" id="baselineBox">
+                <div class="mode-head"><strong>★ Cumulative achievement control</strong><span id="cumModeBadge" class="chip blue">MANUAL</span></div>
+                <p id="cumHelp">Enter your current estimated Cum Ach manually each day until you receive the company-confirmed value. It will NOT add sales automatically until you press FIX.</p>
+                <div class="formgrid" id="manualCumGroup">
+                  <div class="field full"><label for="manualCum">Cum Ach (Rs.) — manual value *</label><input id="manualCum" type="number" min="0" step="1" inputmode="numeric" placeholder="Enter your current total"></div>
+                </div>
+                <div class="formgrid" id="autoCumGroup" hidden>
+                  <div class="field full"><label for="autoCum">Cum Ach (Rs.) — automatically calculated</label><input id="autoCum" type="text" readonly></div>
+                </div>
+                <div class="btns" style="margin-top:12px"><button type="button" id="fixCumBtn" class="btn primary">🔒 FIX Cum Ach &amp; Save Today</button><button type="button" id="unfixCumBtn" class="btn" hidden>Switch back to Manual</button></div>
+                <p class="fieldnote" id="cumModeNote">FIX includes the current day's sales in the amount entered. From the next day, each new Day Ach is added once.</p>
+              </div>
+              <div class="calcstrip"><span>Daily achievement <strong id="liveAch">—</strong></span><span>Shop coverage <strong id="livePrc">—</strong></span></div>
+              <div class="subheading">Market Returns · Automatic Percentage</div>
+              <div class="formgrid"><div class="field"><label for="mrValue">MR value (Rs.)</label><input id="mrValue" type="number" min="0" step="1" inputmode="numeric" placeholder="Leave empty if none"></div><div class="field"><label for="mrPercent">MR % (calculated / editable)</label><input id="mrPercent" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Leave blank if unknown"><small>Auto-calculated using your chosen sales base. You can override it with the company-confirmed percentage.</small></div></div>
+              <div class="mr-inline-box"><div class="mr-inline-head"><span>↩</span><div><strong>Live MR Percentage</strong><small>Choose the correct sales base before saving your report.</small></div></div><div class="formgrid"><div class="field"><label for="mrCalcBasis">Calculate MR % using</label><select id="mrCalcBasis"><option value="cum">Cum Ach (monthly cumulative)</option><option value="day">Day Achievement</option><option value="custom">Custom / Company Sales Base</option></select></div><div class="field" id="mrCustomWrap" hidden><label for="mrBaseCustom">Company sales base (Rs.)</label><input id="mrBaseCustom" type="number" min="0" step="0.01" placeholder="Sales base from company"></div></div><div class="mr-inline-result"><div><small>CALCULATED MR %</small><strong id="mrAutoPreview">—</strong></div><div><small>USED SALES BASE</small><strong id="mrBasePreview">—</strong></div></div><p class="fieldnote" id="mrBasisExplanation">MR % = MR Value ÷ selected Sales Base × 100. If the company uses a different base, select Custom.</p><button class="btn" id="mrApplyBtn" type="button">Use this MR % in report</button></div>
+              <div class="subheading">Key Product Performance</div>
+              <div class="formgrid"><div class="field"><label for="cr230">CR CR 230g</label><input id="cr230" type="number" min="0" step="1" inputmode="numeric" placeholder="00"></div><div class="field"><label for="cr500">CR CR 500gr</label><input id="cr500" type="number" min="0" step="1" inputmode="numeric" placeholder="00"></div><div class="field"><label for="w225">Wafers 225gr</label><input id="w225" type="number" min="0" step="1" inputmode="numeric" placeholder="00"></div><div class="field"><label for="w310">Wafers 310gr</label><input id="w310" type="number" min="0" step="1" inputmode="numeric" placeholder="00"></div><div class="field"><label for="w375">Wafers 375gr</label><input id="w375" type="number" min="0" step="1" inputmode="numeric" placeholder="00"></div></div>
+              <p class="fieldnote">All product values default to 00. No example or test sales are automatically added. You can keep Cum Ach manual until the company confirms it.</p>
+              <div class="btns" style="margin-top:21px"><button type="submit" class="btn primary" id="saveBtn">Save Daily Report</button><button type="button" class="btn" id="clearBtn">Clear Entry</button></div>
+              <p id="editHint" class="fieldnote" hidden>Editing a saved report. Saving will update this record and recalculate following totals.</p>
+            </form>
+          </div></div>
+        </div>
+        <div class="output">
+          <div class="panel"><div class="panelhead"><div><h2>Company report preview</h2><p>Plain-text format, ready for WhatsApp.</p></div><span class="chip">COPY READY</span></div><div class="panelbody">
+            <div class="status" id="previewStatus">Fill in your daily details to generate a report.</div>
+            <div class="paper" id="reportPreview" aria-live="polite"></div>
+            <div class="btns"><button class="btn primary" type="button" id="copyBtn">Copy Report</button><button class="btn whatsapp" type="button" id="waBtn">Share WhatsApp ↗</button></div>
+            <div style="margin-top:21px"><div class="summaryrow"><span>Daily target difference</span><strong class="mono" id="dayDiff">—</strong></div><div class="summaryrow"><span>Balance of monthly target</span><strong class="mono" id="monthRemain">—</strong></div><div class="summaryrow"><span>Automatic rounding</span><strong>Round up to whole %</strong></div></div>
+            <p class="fieldnote">Company format uses whole-number percentages rounded <b>up</b>: 114.23% → 115%, 44.12% → 45%.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-prices">
+<div class="pb-hero"><div class="pb-orb one"></div><div class="pb-orb two"></div>
+ <div class="pb-hero-top"><span class="pb-overline">✦ CHERISH • PRODUCT CATALOG</span><span class="pb-hero-badge">● 48 PRODUCTS</span></div>
+ <h2>Find it fast.<br><em>Price it perfectly.</em></h2><p>Search by product name. Choose a family and pack size to view the exact Excel prices, Dealer Discount %, and every 1% price step up to Last Price.</p>
+ <div class="pb-search-area"><div class="pb-searchbox"><span class="pb-search-icon">⌕</span><input id="priceSearch" type="search" placeholder="Type N for Nice, P for Pink…" autocomplete="off" aria-label="Search product family"><button id="priceClearBtn" type="button" aria-label="Clear search">✕</button></div><div id="pbSuggest" class="pb-suggest" role="listbox" hidden></div></div>
+ <div class="pb-quick" id="priceQuickTags"><button data-search="Nice">Nice</button><button data-search="Black and White">Black & White</button><button data-search="Cracker">Cracker</button><button data-search="Gift">Gift</button><button data-search="Choco Wafers">Choco Wafers</button></div>
+</div>
+<div class="pb-stat-grid"><div class="pb-stat"><span class="pb-stat-icon lavender">▦</span><div><small>PRODUCTS</small><strong id="pbStatProducts">48</strong></div></div><div class="pb-stat"><span class="pb-stat-icon mint">◈</span><div><small>PRODUCT FAMILIES</small><strong id="pbStatFamilies">—</strong></div></div><div class="pb-stat"><span class="pb-stat-icon peach">✧</span><div><small>WITH LAST PRICE</small><strong id="pbStatLast">—</strong></div></div></div>
+<div class="pb-breadcrumb" id="pbBreadcrumb"><button type="button" data-pb-home>All product families</button></div>
+<div class="pb-section-head"><div><span class="pb-kicker" id="pbKicker">BROWSE PRODUCTS</span><h3 id="pbSectionTitle">Choose a product family</h3><p id="pbSectionSub">Select a name to view all available pack sizes.</p></div><button class="pb-export" id="priceCsvBtn" type="button">↓ Export prices CSV</button></div>
+<div id="pbGroups" class="pb-group-grid"></div>
+<div id="pbVariantsWrap" hidden><div id="pbVariants" class="pb-variant-grid"></div></div>
+<div id="pbDetailWrap" hidden><div id="pbDetail" class="pb-detail"></div><div class="pb-tier-panel"><div class="pb-panel-head"><span class="pb-round-icon">%</span><div><h3>Dealer → Last Price guide</h3><p>Every 1% MRP discount step, with the exact Excel Dealer, 6% and Last prices marked.</p></div></div><div class="pb-guide-legend"><span><i class="pb-legend-dot dealer"></i> Dealer (Excel)</span><span><i class="pb-legend-dot six"></i> 6% Price (Excel)</span><span><i class="pb-legend-dot last"></i> Last (Excel)</span><span><i class="pb-legend-dot calc"></i> Calculated from MRP</span></div><div id="pbTiers" class="pb-tier-grid"></div><div id="pbGuideNote" class="pb-guide-note"></div></div>
+<div class="pb-calc-panel"><div class="pb-panel-head"><span class="pb-round-icon">⌗</span><div><h3>Quick billing calculator</h3><p>Enter pieces and discount percentage. Total updates instantly.</p></div></div><div class="pb-calc-inputs"><label>Pieces / Quantity<input id="pbQty" type="number" min="0" step="1" inputmode="numeric" value="1"></label><label>Discount %<input id="pbDisc" type="number" min="0" max="100" step="any" inputmode="decimal" value="16"></label></div><div class="pb-discount-chips" id="pbDiscountChips"><button type="button" data-price-choice="dealer">Dealer (Excel)</button><button type="button" data-price-choice="six">6% Price (Excel)</button><button type="button" data-price-choice="last">Last (Excel)</button><button type="button" data-disc="11">11%</button><button type="button" data-disc="12">12%</button><button type="button" data-disc="13">13%</button><button type="button" data-disc="14">14%</button><button type="button" data-disc="15">15%</button><button type="button" data-disc="16">16%</button></div><div class="pb-calc-result"><div><small>PRICE PER PIECE (MRP LESS DISCOUNT)</small><strong id="pbCalcUnit">—</strong></div><div><small>TOTAL DISCOUNT</small><strong id="pbCalcSaving">—</strong></div><div class="pb-total"><small>FINAL BILL TOTAL</small><strong id="pbCalcTotal">—</strong></div></div></div></div>
+<div class="pb-note"><span>ⓘ</span> Source of truth: your latest uploaded Excel. MRP, Dealer Price, 6% Price and Last Price are copied exactly. Dealer %, 6% effective %, Last % and the 1%-step guide are calculated from MRP. The Excel 6% Price is not replaced by a formula. No Last Price means no assumed final price. Product codes are hidden.</div>
+</section>
+
+    <section class="section" id="section-tools"><div class="tool-intro"><span class="pb-overline">✦ SMART SALES UTILITIES</span><h2>Calculators that save time.</h2><p>Instantly calculate your shop bill and Market Return percentage with a clear calculation base.</p></div>
+<div class="tool-grid"><div class="tool-card"><div class="pb-panel-head"><span class="pb-round-icon">▦</span><div><h3>Shop billing calculator</h3><p>Choose any product, pieces and discount %.</p></div></div>
+<label class="tool-label">Product name<select id="toolProduct"><option value="">Choose product…</option></select></label><div class="tool-two"><label class="tool-label">Pieces<input id="toolQty" type="number" value="1" min="0" step="1"></label><label class="tool-label">Discount %<input id="toolDisc" type="number" value="16" min="0" max="100" step="0.1"></label></div><div class="tool-result"><span>PRICE PER PIECE <strong id="toolUnit">—</strong></span><span>DISCOUNT AMOUNT <strong id="toolSaving">—</strong></span><div>TOTAL TO BILL <strong id="toolTotal">—</strong></div></div></div>
+<div class="tool-card"><div class="pb-panel-head"><span class="pb-round-icon">↩</span><div><h3>Market Return calculator</h3><p>MR % = MR Value ÷ Sales Base × 100.</p></div></div>
+<div class="tool-two"><label class="tool-label">MR return value (Rs.)<input id="toolMR" type="number" min="0" step="0.01" placeholder="206866"></label><label class="tool-label">Sales base (Rs.)<input id="toolBase" type="number" min="0" step="0.01" placeholder="4186866"></label></div><div class="tool-mr-result"><small>MARKET RETURN %</small><strong id="toolMRPct">—</strong><p id="toolMRNote">Enter MR and sales base to calculate.</p></div><p class="tool-hint">Your company may use a different base for MR %. Use the company-confirmed sales base if its reported MR % differs.</p></div></div></section>
+    <section class="section" id="section-monthly">
+      <div class="panel monthly-toolbar"><div class="panelhead historyhead"><div><h2>Monthly performance &amp; printable report</h2><p>Select a saved month to view sales, billing performance, routes, products and each day.</p></div>
+       <div class="btns"><select id="monthlyMonth" class="monthselect" aria-label="Select month for monthly report"></select><button id="printMonthlyBtn" type="button" class="btn primary">Print / Save PDF ↗</button></div></div>
+       <div class="monthly-toolnote">Print / Save PDF opens your device's print dialog. Select <b>Save as PDF</b> on a laptop, or the PDF/share option in Safari on iPhone. The report includes only <b>saved daily entries</b>. Old months remain available after reset.</div>
+      </div>
+      <div id="monthlySheet" class="monthly-sheet"></div>
+    </section>
+    <section class="section" id="section-history"><div class="panel"><div class="panelhead historyhead"><div><h2>Saved sales history</h2><p>Review, edit and copy earlier reports. Cumulative values update in date order.</p></div><select id="historyMonth" class="monthselect" aria-label="Filter history by month"></select></div><div id="historySummary" class="history-summary"></div><div id="historyContent"></div></div></section>
+    <section class="section settingswidth" id="section-settings">
+      <div class="panel"><div class="panelhead"><div><h2>Company details &amp; monthly target</h2><p>Name, daily plan and PLC remain fixed. Monthly target belongs to a specific month.</p></div></div><div class="panelbody"><form id="settingsForm"><div class="formgrid"><div class="field full"><label for="setName">Name</label><input id="setName" required></div><div class="field"><label for="setTarget">Monthly target (Rs.)</label><input id="setTarget" type="number" min="1" step="1" required></div><div class="field"><label for="setPlan">Daily plan (Rs.)</label><input id="setPlan" type="number" min="1" step="1" required></div><div class="field"><label for="setPlc">PLC / Total shops</label><input id="setPlc" type="number" min="1" step="1" required></div></div><p class="fieldnote" id="targetScope">Monthly target is saved separately for each month. Previous months retain their own target, percentages and history.</p><button class="btn primary" style="margin-top:15px" type="submit">Save Fixed Details</button></form></div></div>
+      <div class="panel"><div class="panelhead"><div><h2>Monthly controls &amp; history</h2><p>Every month keeps its own target, cumulative mode, and reports. Old months are never deleted by a monthly reset.</p></div></div><div class="panelbody"><div id="baselinesList"></div><p class="fieldnote">Monthly reset is always confirmed before starting the next month. If the company corrects a fixed cumulative amount, use “Adjust fixed total” for that month.</p></div></div>
+      <div class="panel"><div class="panelhead"><div><h2>Data backup & privacy</h2><p>Local storage on this browser — no account or cloud connection.</p></div></div><div class="panelbody"><div class="btns"><button class="btn" id="exportBtn" type="button">Export JSON Backup ↓</button><button class="btn" id="csvBtn" type="button">Export CSV ↓</button><button class="btn" id="importBtn" type="button">Import Backup ↑</button><input id="importFile" type="file" accept=".json,application/json" hidden></div><div class="notice" style="margin:18px 0 0"><strong>Privacy note:</strong> Your PIN is a screen lock for this device, not a server account. Reports are stored locally in this browser. Clearing browser data may delete them. For a truly private website with login and multi-device sync, secure hosting, user authentication, and an online database must be configured separately.</div></div></div>
+      <div class="panel" style="display:none"><div class="panelhead"><div><h2>PIN Disabled</h2><p>PIN is disabled; website opens directly.</p></div></div><div class="panelbody"><form id="pinChangeForm"><div class="formgrid"><div class="field"><label for="oldPin">Current PIN</label><input id="oldPin" type="password" pattern="[0-9]{6}" maxlength="6" inputmode="numeric" required></div><div class="field"><label for="newPin">New 6-digit PIN</label><input id="newPin" type="password" pattern="[0-9]{6}" maxlength="6" inputmode="numeric" required></div></div><button type="submit" class="btn" style="margin-top:15px">Change PIN</button></form></div></div>
+      <div class="dangerzone"><strong>Remove all saved reports</strong><p>Only use this if you intentionally want to erase your sales history, opening balances and reports from this device. Export a backup first.</p><button class="btn danger" id="resetBtn" type="button">Delete all sales records</button></div>
+    </section>
+    <footer class="footer">Abirthan Sales Desk · Personal reporting workspace · Company-format output</footer>
+  </main>
+</div>
+<div class="month-backdrop" id="monthModal" role="dialog" aria-modal="true" aria-labelledby="monthModalTitle" hidden>
+  <div class="month-dialog">
+    <span class="eyebrow">MONTH-END CONFIRMATION</span>
+    <h2 id="monthModalTitle">Start the next month?</h2>
+    <p id="monthTransitionText">Review the previous month's progress before resetting cumulative sales.</p>
+    <div class="month-summary">
+      <div><span>Previous month</span><strong id="monthPrevLabel">—</strong></div>
+      <div><span>Last Cum Ach</span><strong id="monthPrevCum">—</strong></div>
+      <div><span>Month achievement</span><strong id="monthPrevPct">—</strong></div>
+      <div><span>Saved daily sales total</span><strong id="monthPrevDaily">—</strong></div>
+    </div>
+    <div class="field"><label for="nextMonthTarget">New month target (Rs.) *</label><input type="number" id="nextMonthTarget" min="1" step="1" inputmode="numeric" required></div>
+    <div class="notice" style="margin-top:14px"><b>Reset only applies to the NEW month.</b> Previous monthly sales and reports will stay saved. The new month's Cum Ach starts fresh in MANUAL mode until you FIX a confirmed value.</div>
+    <div class="btns" style="margin-top:10px"><button type="button" class="btn" id="viewClosingReportBtn">View / Print Last Month PDF</button></div>
+    <div class="btns" style="margin-top:17px"><button type="button" id="confirmMonthBtn" class="btn primary">✓ Confirm Reset &amp; New Month</button><button type="button" id="cancelMonthBtn" class="btn">Not now</button></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+'use strict';
+const STORE='abirthan_sales_v1', PIN_STORE='abirthan_sales_pin_v1', SESSION='abirthan_unlocked_v1';
+const el=id=>document.getElementById(id);
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const defaultData=()=>({version:2,settings:{name:'K.Abirthan',monthTarget:5600000,dayPlan:250000,plc:68},reports:[],months:{}});
+const PRICE_BOOK=[{"id":"B0050G001","name":"Choco Peeps 50g","mrp":50.0,"dealer":45.0,"six":42.3,"last":39.0,"case":60},{"id":"B0050G002","name":"Custad cream90g","mrp":100.0,"dealer":87.5,"six":82.25,"last":null,"case":50},{"id":"B0050G003","name":"Like Marie  50g*60","mrp":50.0,"dealer":45.0,"six":42.3,"last":39.0,"case":60},{"id":"B0080G001","name":"Mari 75G - V.Discount","mrp":80.0,"dealer":70.01,"six":65.8,"last":60.0,"case":60},{"id":"B0080G005","name":"Black and White 80g","mrp":130.0,"dealer":114.56,"six":107.68,"last":100.0,"case":50},{"id":"B0080GF05","name":"duplex 90g","mrp":100.0,"dealer":90.0,"six":84.6,"last":80.0,"case":50},{"id":"B0100G001","name":"Chocolate Cream90g","mrp":110.0,"dealer":96.26,"six":90.48,"last":85.0,"case":50},{"id":"B0250G004","name":"Like Mari 250g*4","mrp":220.0,"dealer":198.0,"six":186.12,"last":null,"case":4},{"id":"BL125G004","name":"Cracker 125G","mrp":130.0,"dealer":115.7,"six":108.75,"last":null,"case":48},{"id":"BL200G005","name":"Chocolate Biscuits 200g","mrp":250.0,"dealer":212.3,"six":199.56,"last":null,"case":12},{"id":"BL200G005L","name":"Black and white 180g","mrp":260.0,"dealer":232.86,"six":218.88,"last":null,"case":12},{"id":"BL200G006","name":"Lemon Puff 200g*12","mrp":260.0,"dealer":232.1,"six":218.74,"last":null,"case":12},{"id":"BL230G003","name":"Cracker 230G","mrp":230.0,"dealer":204.15,"six":191.9,"last":null,"case":12},{"id":"BL240G001","name":"ChocoPeeps 240G","mrp":230.0,"dealer":207.0,"six":194.58,"last":null,"case":4},{"id":"BL240G002","name":"VanillaPeeps 240g","mrp":220.0,"dealer":198.0,"six":186.12,"last":null,"case":4},{"id":"BL240G003","name":"Custed 240g","mrp":220.0,"dealer":194.32,"six":182.66,"last":null,"case":12},{"id":"BL240G006","name":"Nice 240g*12","mrp":270.0,"dealer":238.35,"six":224.04,"last":null,"case":12},{"id":"BL300G001","name":"Shorties 280g","mrp":220.0,"dealer":198.0,"six":186.12,"last":170.0,"case":4},{"id":"BL300GF01","name":"Nice 450g","mrp":430.0,"dealer":378.49,"six":355.78,"last":330.0,"case":4},{"id":"BL320G002","name":"Marie 320g","mrp":320.0,"dealer":280.0,"six":263.32,"last":275.0,"case":4},{"id":"BL330G001","name":"Orange Cream 330g","mrp":390.0,"dealer":350.02,"six":329.18,"last":null,"case":4},{"id":"BL330G003","name":"Lemon Cream 330g","mrp":390.0,"dealer":350.02,"six":329.18,"last":null,"case":4},{"id":"BL330G004","name":"Black and White 330g","mrp":430.0,"dealer":359.11,"six":337.56,"last":330.0,"case":4},{"id":"BL365GL01","name":"Chocolate Cream 365g","mrp":430.0,"dealer":346.52,"six":325.72,"last":330.0,"case":4},{"id":"BL400G007","name":"Duplex 400g","mrp":430.0,"dealer":378.6,"six":355.88,"last":330.0,"case":4},{"id":"BL450G003","name":"Ginger 475g","mrp":390.0,"dealer":341.25,"six":320.77,"last":null,"case":4},{"id":"BL480GF01","name":"Cracker 490g","mrp":440.0,"dealer":388.81,"six":365.48,"last":340.0,"case":6},{"id":"BL500G002","name":"Break crunchy 6g","mrp":15.0,"dealer":13.5,"six":12.69,"last":11.5,"case":864},{"id":"BL500G003","name":"Chocolate Fingers 40g","mrp":100.0,"dealer":90.0,"six":84.6,"last":null,"case":72},{"id":"BL500GF03","name":"Chocolate Fingers 28g","mrp":60.0,"dealer":54.0,"six":50.76,"last":null,"case":72},{"id":"CH006G001","name":"Clasic Vanila Wafers 30g","mrp":50.0,"dealer":45.0,"six":42.3,"last":39.0,"case":48},{"id":"CH006G003","name":"choco wefers30g","mrp":50.0,"dealer":45.0,"six":42.3,"last":39.0,"case":48},{"id":"CH006GF03","name":"lemon wefers30g","mrp":50.0,"dealer":45.0,"six":42.3,"last":39.0,"case":48},{"id":"CH040G001","name":"Vanilla CUBE Wafers 85g","mrp":130.0,"dealer":114.78,"six":107.89,"last":98.0,"case":48},{"id":"CH100G001","name":"Choco Wafers 85g","mrp":130.0,"dealer":114.78,"six":107.89,"last":98.0,"case":24},{"id":"W0035G001","name":"Classic Vanilla 85g","mrp":130.0,"dealer":114.78,"six":107.89,"last":98.0,"case":24},{"id":"W0085G001","name":"Pink Wafers 85g","mrp":130.0,"dealer":114.78,"six":107.89,"last":98.0,"case":24},{"id":"W0090G001","name":"Vanilla Wafers 225g","mrp":320.0,"dealer":283.3,"six":266.02,"last":250.0,"case":6},{"id":"W0090G002","name":"Choco Wafers 225g","mrp":320.0,"dealer":283.3,"six":266.02,"last":250.0,"case":6},{"id":"W0090G005","name":"Milk Wafers 225g","mrp":320.0,"dealer":283.3,"six":266.02,"last":250.0,"case":6},{"id":"W0090GF09","name":"Lemon Wafers 225g","mrp":320.0,"dealer":283.3,"six":266.02,"last":250.0,"case":6},{"id":"W0225G001","name":"Pink Wafers 225g","mrp":320.0,"dealer":283.3,"six":266.02,"last":250.0,"case":6},{"id":"W0225G002","name":"Vanila Wafers 375g","mrp":490.0,"dealer":431.2,"six":405.32,"last":null,"case":4},{"id":"W0225G003","name":"Chocolate Wafers 375g","mrp":490.0,"dealer":431.2,"six":405.32,"last":null,"case":4},{"id":"W0225G004","name":"Pink Wafers 375g","mrp":490.0,"dealer":431.2,"six":405.32,"last":null,"case":4},{"id":"W0225G005","name":"milk wefers310g","mrp":430.0,"dealer":380.55,"six":332.76,"last":null,"case":3},{"id":"W0225GF08","name":"choco wefers310g","mrp":430.0,"dealer":380.55,"six":332.76,"last":null,"case":3},{"id":"W0400G004E","name":"Gift 400g","mrp":600.0,"dealer":538.0,"six":505.72,"last":null,"case":10}];
+
+let data=readData(), editingId=null, currentText='', lockTimer=null, toastTimer=null, monthPending=null, previousDate='';
+function n(v,def=0){if(v===''||v===null||v===undefined)return def;const x=Number(v);return Number.isFinite(x)?x:def;}
+function pct(v,total){return total>0?Math.ceil(100*v/total-1e-10):0;} // Company sample rounds UP.
+function fmtAmount(v){return 'Rs. '+Math.round(n(v)).toLocaleString('en-US');}
+function compactNumber(v,digits){return digits===0?v.toFixed(0):v.toFixed(digits).replace(/\.?0+$/,'');}
+function shortMoney(v){const a=Math.abs(n(v)),sgn=v<0?'-':'';return a>=1e6?sgn+'Rs. '+compactNumber(a/1e6,2)+'M':a>=1e3?sgn+'Rs. '+compactNumber(a/1e3,a%1000===0?0:1)+'K':sgn+fmtAmount(a);}
+
+function fmtPrice(v){if(v===null||v===undefined||v==='')return '—';return 'Rs. '+Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtPct1(v){if(v===null||v===undefined||!Number.isFinite(Number(v)))return '—';return Number(v).toFixed(2)+'%';}
+let pbGroup=null,pbSelected=null,pbQuery='';
+function pbFamily(name){let s=name.trim().replace(/(\d+(?:\.\d+)?\s*(?:g|gr|gm|kg))\b.*$/i,'').replace(/\s+/g,' ').trim();s=s.replace(/^ChocoPeeps$/i,'Choco Peeps').replace(/^VanillaPeeps$/i,'Vanilla Peeps').replace(/wefers/ig,'Wafers').replace(/vanila/ig,'Vanilla').replace(/clasic/ig,'Classic');return s.replace(/\b\w/g,c=>c.toUpperCase());}
+const PB_GROUPS=(()=>{const m=new Map();PRICE_BOOK.forEach(p=>{const k=pbFamily(p.name),id=k.toLowerCase();if(!m.has(id))m.set(id,{name:k,id,items:[]});m.get(id).items.push(p);});return [...m.values()].sort((a,b)=>a.name.localeCompare(b.name));})();
+function pbMatches(){const q=pbQuery.trim().toLowerCase();return PB_GROUPS.filter(g=>!q||g.name.toLowerCase().startsWith(q));}
+function pbMoney(n){return fmtPrice(n);}
+function pbCardIcon(name){return /gift/i.test(name)?'🎁':/wafers|wefers/i.test(name)?'▤':/cracker/i.test(name)?'▥':/nice/i.test(name)?'✦':/choco|chocolate/i.test(name)?'◈':'▣';}
+function pbSuggestRender(){const e=el('pbSuggest'),q=pbQuery.trim();if(!q||pbGroup){e.hidden=true;return;}const gs=pbMatches();e.innerHTML='<div class="pb-suggest-head">'+gs.length+' MATCHING PRODUCT FAMILIES</div>'+(gs.length?gs.map(g=>`<button type="button" class="pb-suggest-row" data-pb-group="${escapeHTML(g.id)}"><span class="pb-group-symbol">${pbCardIcon(g.name)}</span><span><strong>${escapeHTML(g.name)}</strong><small>${g.items.length} product${g.items.length===1?'':'s'}</small></span><span class="pb-arrow">↗</span></button>`).join(''):'<div class="pb-empty-mini">No family begins with that letter. Try another name.</div>');e.hidden=false;}
+function pbHome(){pbGroup=null;pbSelected=null;pbQuery='';el('priceSearch').value='';el('pbSuggest').hidden=true;renderPriceBook();}
+function pbChooseGroup(id){const g=PB_GROUPS.find(x=>x.id===id);if(!g)return;pbGroup=g;pbSelected=null;pbQuery='';el('priceSearch').value='';el('pbSuggest').hidden=true;renderPriceBook();el('pbBreadcrumb').scrollIntoView({behavior:'smooth',block:'start'});}
+function pbChooseItem(id){const p=PRICE_BOOK.find(x=>x.id===id);if(!p)return;pbSelected=p;renderPriceBook();el('pbDetailWrap').scrollIntoView({behavior:'smooth',block:'start'});}
+function pbPriceCalc(){if(!pbSelected)return;const q=Number(el('pbQty').value),d=Number(el('pbDisc').value);if(!Number.isFinite(q)||q<0||!Number.isInteger(q)||!Number.isFinite(d)||d<0||d>100){el('pbCalcUnit').textContent='—';el('pbCalcSaving').textContent='—';el('pbCalcTotal').textContent='Check inputs';return;}const unit=pbSelected.mrp*(1-d/100),saving=pbSelected.mrp*d/100*q;el('pbCalcUnit').textContent=pbMoney(unit);el('pbCalcSaving').textContent=pbMoney(saving);el('pbCalcTotal').textContent=pbMoney(unit*q);document.querySelectorAll('#pbDiscountChips [data-disc]').forEach(b=>b.classList.toggle('selected',Math.abs(Number(b.dataset.disc)-d)<0.0000001));document.querySelectorAll('#pbDiscountChips [data-price-choice]').forEach(b=>{const v=pbSelected[b.dataset.priceChoice];b.classList.toggle('selected',v!==null&&v!==undefined&&Math.abs(v-unit)<0.001);});}
+function pbDiscountPercent(p,price){return p.mrp>0&&price!==null&&price!==undefined?(p.mrp-price)/p.mrp*100:null;}
+function pbPriceGuide(p){
+ const dealerPct=pbDiscountPercent(p,p.dealer),sixPct=pbDiscountPercent(p,p.six),lastPct=pbDiscountPercent(p,p.last);
+ const upper=lastPct===null?sixPct:Math.max(lastPct,sixPct);
+ const min=Math.ceil(dealerPct-1e-8),max=Math.floor(upper+1e-8);
+ const rows=[];
+ const anchors=[{kind:'dealer',name:'Dealer Price · Excel',price:p.dealer,pct:dealerPct},{kind:'six',name:'6% Price · Excel',price:p.six,pct:sixPct}];
+ if(p.last!==null)anchors.push({kind:'last',name:'Last Price · Excel',price:p.last,pct:lastPct});
+ for(let d=min;d<=max&&d<=100;d++){
+   if(d<dealerPct-1e-8)continue;
+   if(!anchors.some(a=>Math.abs(a.pct-d)<0.0000001))rows.push({kind:'calc',name:d+'% off MRP',price:p.mrp*(1-d/100),pct:d});
+ }
+ rows.push(...anchors);
+ rows.sort((a,b)=>a.pct-b.pct||({'dealer':0,'six':1,'last':2,'calc':3}[a.kind]-{'dealer':0,'six':1,'last':2,'calc':3}[b.kind]));
+ return rows;
+}
+function pbDetails(){
+ const p=pbSelected;if(!p)return;
+ const dealerPct=pbDiscountPercent(p,p.dealer),sixPct=pbDiscountPercent(p,p.six),lastPct=pbDiscountPercent(p,p.last);
+ const saved=p.last!==null?p.mrp-p.last:null;
+ el('pbDetail').innerHTML=`<div class="pb-detail-head"><div><span class="pb-kicker">SELECTED PRODUCT · COMPANY EXCEL</span><h3>${escapeHTML(p.name)}</h3><p>Exact prices from Excel · ${p.case===null?'Case quantity not provided':p.case+' pieces per case'}</p></div><span class="pb-detail-icon">${pbCardIcon(p.name)}</span></div>
+ <div class="pb-prices pb-five-prices">
+  <div class="pb-price"><span>🏷 MRP · Excel</span><strong>${pbMoney(p.mrp)}</strong><small>Original retail price</small></div>
+  <div class="pb-price pb-dealer-price"><span>🏪 Dealer Price · Excel</span><strong>${pbMoney(p.dealer)}</strong><small>${fmtPct1(dealerPct)} off MRP</small></div>
+  <div class="pb-price pb-six-price"><span>📉 6% Price · Excel</span><strong>${pbMoney(p.six)}</strong><small>${fmtPct1(sixPct)} total off MRP</small></div>
+  <div class="pb-price special"><span>✦ Last Price · Excel</span><strong>${pbMoney(p.last)}</strong><small>${p.last===null?'Not provided in Excel':fmtPct1(lastPct)+' total off MRP'}</small></div>
+  <div class="pb-price"><span>📦 Case Pieces</span><strong>${p.case===null?'—':p.case+' pcs'}</strong><small>Quantity in one case</small></div>
+ </div>
+ <div class="pb-last-discount"><div><small>TOTAL DISCOUNT FROM MRP TO LAST PRICE</small><strong>${fmtPct1(lastPct)}</strong></div><p>${saved===null?'Last Price is blank in the Excel. No final discount assumed.':`${pbMoney(p.mrp)} − ${pbMoney(p.last)} = ${pbMoney(saved)} total discount`}</p></div>`;
+ const rows=pbPriceGuide(p);
+ el('pbTiers').innerHTML=rows.map(r=>`<div class="pb-tier pb-step-${r.kind}" ${r.kind==='calc'?'':'data-excel="true"'}><span>${escapeHTML(r.name)}</span><strong>${pbMoney(r.price)}</strong><small>${fmtPct1(r.pct)} discount from MRP</small></div>`).join('');
+ let note='Calculated steps are based on MRP: MRP × (1 − Discount% ÷ 100). Dealer, 6% and Last prices are copied from the Excel, not recalculated.';
+ if(p.last===null)note+=' Last Price is missing, so the guide stops at the 6% Price.';
+ if(p.last!==null&&p.last>p.six+0.001)note+=' ⚠ In the Excel, Last Price is HIGHER than the 6% Price for this product. Both original values are preserved; the steps are ordered by effective MRP discount.';
+ el('pbGuideNote').textContent=note;
+ const lastBtn=el('pbDiscountChips').querySelector('[data-price-choice="last"]');if(lastBtn)lastBtn.disabled=p.last===null;
+ pbPriceCalc();
+}
+function renderPriceBook(){el('pbStatProducts').textContent=PRICE_BOOK.length;el('pbStatFamilies').textContent=PB_GROUPS.length;el('pbStatLast').textContent=PRICE_BOOK.filter(p=>p.last!==null).length;el('pbBreadcrumb').innerHTML=`<button type="button" data-pb-home>All product families</button>`+(pbGroup?`<span>›</span><strong>${escapeHTML(pbGroup.name)}</strong>`:'');el('pbGroups').hidden=!!pbGroup;el('pbVariantsWrap').hidden=!pbGroup;el('pbDetailWrap').hidden=!pbSelected;
+ if(!pbGroup){const groups=pbMatches();el('pbKicker').textContent=pbQuery?'SEARCH RESULTS':'BROWSE PRODUCTS';el('pbSectionTitle').textContent=pbQuery?`${groups.length} matching families`:'Choose a product family';el('pbSectionSub').textContent=pbQuery?'Select a family to see its available sizes.':'Type one letter or select a product family below.';el('pbGroups').innerHTML=groups.map(g=>`<button class="pb-group-card" data-pb-group="${escapeHTML(g.id)}" type="button"><span class="pb-group-symbol">${pbCardIcon(g.name)}</span><span class="pb-group-text"><strong>${escapeHTML(g.name)}</strong><small>${g.items.length} product${g.items.length===1?'':'s'}</small></span><span class="pb-group-chevron">›</span></button>`).join('')||'<div class="pb-noresults">No product families match this search.</div>';}
+ else{el('pbKicker').textContent='PRODUCT FAMILY';el('pbSectionTitle').textContent=pbGroup.name;el('pbSectionSub').textContent=`${pbGroup.items.length} available product${pbGroup.items.length===1?'':'s'} · Choose one to see its prices.`;el('pbVariants').innerHTML=pbGroup.items.map(p=>`<button type="button" class="pb-variant ${pbSelected?.id===p.id?'selected':''}" data-pb-item="${escapeHTML(p.id)}"><span class="pb-variant-mark">▣</span><span class="pb-variant-text"><strong>${escapeHTML(p.name)}</strong><small>${p.case===null?'Case qty —':p.case+' pcs / case'}</small></span><span class="pb-variant-price"><strong>${pbMoney(p.mrp)}</strong><small>MRP →</small></span></button>`).join('');}
+ if(pbSelected)pbDetails();}
+function exportPriceCSV(){
+ const pctOf=(p,price)=>price===null||price===undefined||!p.mrp?'':((p.mrp-price)/p.mrp*100).toFixed(2);
+ const steps=Array.from({length:21},(_,i)=>i+10);
+ const rows=[['Product Name','MRP (Excel)','Dealer Price (Excel)','Dealer Discount % of MRP','6% Price (Excel)','6% Price Effective Discount % of MRP','Last Price (Excel)','Last Price Discount % of MRP','Case Pieces',...steps.map(x=>x+'% Price (Calculated from MRP)')]];
+ for(const p of PRICE_BOOK){rows.push([p.name,p.mrp,p.dealer,pctOf(p,p.dealer),p.six,pctOf(p,p.six),p.last??'',pctOf(p,p.last),p.case??'',...steps.map(d=>(p.mrp*(1-d/100)).toFixed(2))]);}
+ download('Abirthan_Excel_Price_Book_Dealer_to_Last.csv','\ufeff'+rows.map(row=>row.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8');toast('Excel-based price book exported.');
+}
+function pbWire(){el('priceSearch').addEventListener('input',e=>{pbQuery=e.target.value;pbGroup=null;pbSelected=null;renderPriceBook();pbSuggestRender();});el('priceSearch').addEventListener('focus',pbSuggestRender);el('priceSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){const first=pbMatches()[0];if(first)pbChooseGroup(first.id);}if(e.key==='Escape')el('pbSuggest').hidden=true;});el('priceClearBtn').addEventListener('click',pbHome);el('priceCsvBtn').addEventListener('click',exportPriceCSV);el('priceQuickTags').addEventListener('click',e=>{const b=e.target.closest('[data-search]');if(!b)return;const g=PB_GROUPS.find(g=>g.name.toLowerCase()===b.dataset.search.toLowerCase());if(g)pbChooseGroup(g.id);else{pbQuery=b.dataset.search;el('priceSearch').value=pbQuery;renderPriceBook();pbSuggestRender();}});el('section-prices').addEventListener('click',e=>{const g=e.target.closest('[data-pb-group]'),p=e.target.closest('[data-pb-item]');if(g)pbChooseGroup(g.dataset.pbGroup);else if(p)pbChooseItem(p.dataset.pbItem);else if(e.target.closest('[data-pb-home]'))pbHome();else if(e.target.closest('[data-price-choice]')){const key=e.target.closest('[data-price-choice]').dataset.priceChoice;if(pbSelected&&pbSelected[key]!==null&&pbSelected[key]!==undefined){el('pbDisc').value=pbDiscountPercent(pbSelected,pbSelected[key]).toFixed(8);pbPriceCalc();}}else if(e.target.closest('[data-disc]')){el('pbDisc').value=e.target.closest('[data-disc]').dataset.disc;pbPriceCalc();}});['pbQty','pbDisc'].forEach(id=>el(id).addEventListener('input',pbPriceCalc));document.addEventListener('click',e=>{if(!e.target.closest('.pb-search-area'))el('pbSuggest').hidden=true;});renderPriceBook();}
+function toolsWire(){el('toolProduct').innerHTML='<option value="">Choose product…</option>'+PRICE_BOOK.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(p=>`<option value="${escapeHTML(p.id)}">${escapeHTML(p.name)}</option>`).join('');['toolProduct','toolQty','toolDisc'].forEach(id=>el(id).addEventListener('input',updateToolsPrice));['toolMR','toolBase'].forEach(id=>el(id).addEventListener('input',updateToolsMR));updateToolsPrice();updateToolsMR();}
+function updateToolsPrice(){const p=PRICE_BOOK.find(p=>p.id===el('toolProduct').value),q=Number(el('toolQty').value),d=Number(el('toolDisc').value);if(!p||!Number.isFinite(q)||q<0||!Number.isInteger(q)||!Number.isFinite(d)||d<0||d>100){['toolUnit','toolSaving','toolTotal'].forEach(id=>el(id).textContent='—');return;}el('toolUnit').textContent=pbMoney(p.mrp*(1-d/100));el('toolSaving').textContent=pbMoney(p.mrp*d/100*q);el('toolTotal').textContent=pbMoney(p.mrp*(1-d/100)*q);}
+function updateToolsMR(){const mr=Number(el('toolMR').value),base=Number(el('toolBase').value);if(el('toolMR').value!==''&&el('toolBase').value!==''&&mr>=0&&base>0){el('toolMRPct').textContent=fmtPct1(mr/base*100);el('toolMRNote').textContent=`${pbMoney(mr)} ÷ ${pbMoney(base)} × 100`;}else{el('toolMRPct').textContent='—';el('toolMRNote').textContent='Enter MR and sales base to calculate.';}}
+function liveMRBase(){const mode=el('mrCalcBasis').value;if(mode==='day')return Number(el('dayAch').value);if(mode==='custom')return Number(el('mrBaseCustom').value);const key=monthKey(field('date'));if(!key)return 0;const r=draft();const c=calculated(r);return c.cum??0;}
+function liveMRCalc(writeField=false){const mode=el('mrCalcBasis').value;el('mrCustomWrap').hidden=mode!=='custom';const mr=Number(el('mrValue').value),base=liveMRBase(),valid=el('mrValue').value!==''&&Number.isFinite(mr)&&mr>=0&&Number.isFinite(base)&&base>0;el('mrAutoPreview').textContent=valid?fmtPct1(mr/base*100):'—';el('mrBasePreview').textContent=base>0?pbMoney(base):'—';el('mrApplyBtn').disabled=!valid;if(writeField&&valid){el('mrPercent').value=(mr/base*100).toFixed(2);}if(writeField&&!valid&&el('mrValue').value==='')el('mrPercent').value='';}
+function liveMRWire(){['mrValue','mrBaseCustom','mrCalcBasis','dayAch','manualCum','date'].forEach(id=>el(id).addEventListener(id==='mrCalcBasis'?'change':'input',()=>liveMRCalc(true)));el('mrApplyBtn').addEventListener('click',()=>{liveMRCalc(true);refresh();toast('Calculated MR % added to report.');});liveMRCalc(false);}
+function monthKey(date){return /^\d{4}-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/.test(date)?date.slice(0,7):'';}
+function dateLabel(date){if(!monthKey(date))return '';const [y,m,d]=date.split('-');return d+'.'+m+'.'+y;}
+function monthLabel(key){return /^\d{4}-\d{2}$/.test(key)?new Date(Number(key.slice(0,4)),Number(key.slice(5,7))-1,1).toLocaleDateString('en-GB',{month:'long',year:'numeric'}):key;}
+function todayISO(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
+function upgrade(p){
+ if(!p||!p.settings||!Array.isArray(p.reports))return null;
+ if(p.version===2&&p.months&&typeof p.months==='object')return p;
+ if(p.version!==1)return null;
+ const months={};
+ const keys=new Set([...Object.keys(p.baselines||{}),...p.reports.map(r=>monthKey(r.date))]);
+ for(const key of keys){if(!key)continue;const b=p.baselines?.[key];
+  const oldReports=p.reports.filter(r=>monthKey(r.date)===key).sort((a,b)=>a.date.localeCompare(b.date));
+  // Legacy data must stay MANUAL until the user explicitly presses FIX in this version.
+  // Preserve every previous calculated cumulative amount as a per-day manual value.
+  let running=n(b?.opening);
+  for(const r of oldReports){running+=n(r.dayAch);if(r.manualCum===undefined||r.manualCum===null)r.manualCum=running;}
+  months[key]={target:p.settings.monthTarget,mode:'manual',anchorDate:null,anchorValue:0,confirmed:false,updatedAt:new Date().toISOString()};
+ }
+ return {version:2,settings:p.settings,reports:p.reports,months};
+}
+function readData(){try{const raw=JSON.parse(localStorage.getItem(STORE));return upgrade(raw)||defaultData();}catch(e){return defaultData();}}
+function saveData(){localStorage.setItem(STORE,JSON.stringify(data));}
+function monthConf(key,create=false){if(!key)return null;
+ if(!data.months[key]&&create)data.months[key]={target:data.settings.monthTarget,mode:'manual',anchorDate:null,anchorValue:0,confirmed:true,updatedAt:new Date().toISOString()};
+ return data.months[key]||{target:data.settings.monthTarget,mode:'manual',anchorDate:null,anchorValue:0,confirmed:false};
+}
+function monthTarget(dateOrKey){const key=dateOrKey.length===7?dateOrKey:monthKey(dateOrKey);return n(monthConf(key)?.target,data.settings.monthTarget);}
+function knownMonths(){return [...new Set([...Object.keys(data.months),...data.reports.map(r=>monthKey(r.date))])].filter(Boolean).sort();}
+function monthLastReport(key){return data.reports.filter(r=>monthKey(r.date)===key).sort((a,b)=>a.date.localeCompare(b.date)).at(-1)||null;}
+function monthDailySum(key){return data.reports.filter(r=>monthKey(r.date)===key).reduce((sum,r)=>sum+n(r.dayAch),0);}
+function field(id){return el(id).value;}
+function optionalNumber(id){const val=field(id).trim();return val===''?null:Number(val);}
+function draft(){return {date:field('date'),route:field('route').trim(),dayAch:optionalNumber('dayAch'),prc:optionalNumber('prc'),dailyBills:optionalNumber('dailyBills'),tlc:optionalNumber('tlc'),newOutlet:optionalNumber('newOutlet'),mrValue:optionalNumber('mrValue'),mrPercent:optionalNumber('mrPercent'),manualCum:optionalNumber('manualCum'),products:{cr230:optionalNumber('cr230'),cr500:optionalNumber('cr500'),w225:optionalNumber('w225'),w310:optionalNumber('w310'),w375:optionalNumber('w375')}};}
+function autoOn(key,date){const c=monthConf(key);return c?.mode==='auto'&&(c.anchorDate===null||date>=c.anchorDate);}
+function requiresManual(date){const key=monthKey(date);return !autoOn(key,date);}
+function accumulatedAuto(date,dayAch,excludeId){const key=monthKey(date),c=monthConf(key);let total=n(c.anchorValue);
+ if(c.anchorDate===date)return total; // Fixed value already includes this day's sale.
+ for(const r of data.reports){if(r.id===excludeId||monthKey(r.date)!==key||r.date>date)continue;
+   if(c.anchorDate===null||r.date>c.anchorDate)total+=n(r.dayAch);
+ }
+ if(c.anchorDate!==date)total+=n(dayAch);
+ return total;
+}
+function cumForSaved(r){const key=monthKey(r.date);if(!autoOn(key,r.date))return r.manualCum??null;const c=monthConf(key);if(c.anchorDate===r.date)return n(c.anchorValue);return accumulatedAuto(r.date,0,null);}
+function calculated(d,asSaved=false){const key=monthKey(d.date),cum=asSaved?cumForSaved(d):(requiresManual(d.date)?d.manualCum:accumulatedAuto(d.date,d.dayAch,editingId));
+ const mrPct=d.mrPercent;
+ return {cum,dayPct:pct(n(d.dayAch),data.settings.dayPlan),prcPct:pct(n(d.prc),data.settings.plc),monthPct:cum===null?null:pct(cum,monthTarget(key)),mrPct:mrPct===null?null:Math.ceil(mrPct-1e-10)};
+}
+const qval=(v,blank='')=>v===null||v===undefined?blank:String(v);
+const quantity=v=>v===null||v===undefined?'00':String(Math.trunc(v)).padStart(2,'0');
+function formatReport(d,c){const s=data.settings;return [
+ `Name:-${s.name}`,`Date:-${dateLabel(d.date)}`,`Route:-${d.route}`,`Month Target:-${monthTarget(d.date)}`,`Day plan:-${s.dayPlan}`,`Day Ach:-${qval(d.dayAch)}`,`Ach %:-${c.dayPct}%`,
+ `Cum Ach:-${qval(c.cum,'')}`,`Cum %:-${c.monthPct===null?'':c.monthPct+'%'}`,`PLC:-${s.plc}`,`PRC:-${qval(d.prc)}`,`PRC %:-${c.prcPct}%`,
+ `TLC:-${qval(d.tlc)}`,`MR Value:-${qval(d.mrValue)}`,`MR %:-${c.mrPct===null?'':c.mrPct+'%'}`,`Key products`,
+ `CR CR 230g:-${quantity(d.products.cr230)}`,`CR CR 500gr:-${quantity(d.products.cr500)}`,`Wafers 225gr:-${quantity(d.products.w225)}`,`Wafers 310gr:-${quantity(d.products.w310)}`,`Wafers 375gr:-${quantity(d.products.w375)}`,`New outlet:-${d.newOutlet===null?'':quantity(d.newOutlet)}`].join('\n');}
+function hasValid(d){return !!(monthKey(d.date)&&d.route&&d.dayAch!==null&&Number.isInteger(d.dayAch)&&d.dayAch>=0&&d.prc!==null&&Number.isInteger(d.prc)&&d.prc>=0&&d.prc<=data.settings.plc);}
+function updateCumControls(){const date=field('date'),key=monthKey(date),c=monthConf(key),manual=requiresManual(date),anchorDay=c?.mode==='auto'&&c.anchorDate===date;
+ el('manualCumGroup').hidden=!manual;el('autoCumGroup').hidden=manual;
+ el('fixCumBtn').hidden=!manual;el('unfixCumBtn').hidden=c?.mode!=='auto';
+ el('cumModeBadge').textContent=manual?'MANUAL':'FIXED · AUTO';
+ el('cumModeBadge').className=manual?'chip blue':'chip';
+ el('cumHelp').textContent=manual?('Enter this day\'s Cum Ach yourself. It will stay manual until you press FIX. The company-confirmed value must INCLUDE the sales for '+dateLabel(date)+'.'):
+  ('Cumulative is fixed at '+fmtAmount(c.anchorValue)+' on '+(c.anchorDate?dateLabel(c.anchorDate):'the month opening')+'. All saved Day Ach values on later dates add automatically.');
+ el('cumModeNote').textContent=manual?'Press FIX only after the company confirms this exact Cum Ach; FIX also saves today’s entry.':'To correct your company total use Adjust fixed total in Settings, or switch back to Manual.';
+ if(anchorDay)el('autoCum').value=fmtAmount(c.anchorValue);
+}
+function refresh(){const d=draft();updateCumControls();const valid=hasValid(d),c=valid?calculated(d):null,hasCum=valid&&c.cum!==null&&Number.isFinite(c.cum);
+ el('liveAch').textContent=d.dayAch===null?'—':pct(d.dayAch,data.settings.dayPlan)+'%';
+ el('livePrc').textContent=d.prc===null?'—':pct(d.prc,data.settings.plc)+'%';
+ if(valid){currentText=formatReport(d,c);el('reportPreview').textContent=currentText;}
+ else{currentText='';el('reportPreview').textContent='Enter report date, route, day achievement and PRC to see your company report here.';}
+ if(valid&&!hasCum)el('previewStatus').textContent='MANUAL mode: Enter your Cum Ach to complete this report. Sales will NOT automatically add until you FIX.';
+ else if(valid)el('previewStatus').textContent=requiresManual(d.date)?'Manual total ready. Save or FIX once the company confirms.':'AUTO mode: This Cum Ach includes only saved sales after the fixed date, plus today’s entry.';
+ else el('previewStatus').textContent='Fill in your daily details to generate a report.';
+ const target=monthTarget(d.date||todayISO());
+ el('mTarget').textContent=shortMoney(target);el('mPlan').textContent=shortMoney(data.settings.dayPlan);el('mPlc').textContent=data.settings.plc;
+ el('mCum').textContent=hasCum?shortMoney(c.cum):'—';el('mCumNote').textContent=hasCum?'Monthly achievement: '+c.monthPct+'%':requiresManual(d.date)?'Manual Cum Ach required':'Enter daily details';
+ el('mProgress').style.width=hasCum?Math.min(100,Math.max(0,c.cum/target*100))+'%':'0%';
+ el('dayDiff').textContent=d.dayAch===null?'—':(d.dayAch>=data.settings.dayPlan?'+':'−')+fmtAmount(Math.abs(d.dayAch-data.settings.dayPlan));
+ el('monthRemain').textContent=hasCum?fmtAmount(Math.max(0,target-c.cum)):'—';
+ el('copyBtn').disabled=!hasCum;el('waBtn').disabled=!hasCum;
+ el('autoCum').value=hasCum?fmtAmount(c.cum):'—';
+ el('saveBtn').textContent=editingId?'Update Daily Report':'Save Daily Report';el('editHint').hidden=!editingId;
+}
+function validateDraft(d){if(!monthKey(d.date)||!Number.isFinite(Date.parse(d.date+'T00:00:00')))return 'Please choose a valid report date.';
+ if(!d.route)return 'Please enter the route.';if(d.dayAch===null||!Number.isInteger(d.dayAch)||d.dayAch<0)return 'Enter a non-negative whole-number Day Ach.';
+ if(d.prc===null||!Number.isInteger(d.prc)||d.prc<0||d.prc>data.settings.plc)return 'PRC must be a whole number between 0 and PLC ('+data.settings.plc+').';
+ if(d.dailyBills!==null&&(!Number.isInteger(d.dailyBills)||d.dailyBills<0))return 'Daily bills must be a non-negative whole number.';
+ for(const [id,value] of [['New outlet',d.newOutlet],...Object.entries(d.products)])if(value!==null&&(!Number.isInteger(value)||value<0))return id+' must be a non-negative whole number.';
+ for(const [id,value] of [['TLC',d.tlc],['MR Value',d.mrValue],['MR %',d.mrPercent]])if(value!==null&&(!Number.isFinite(value)||value<0))return id+' must be non-negative.';
+ if(requiresManual(d.date)&&(d.manualCum===null||!Number.isInteger(d.manualCum)||d.manualCum<0))return 'MANUAL Cum Ach is required. Enter your estimated/company total or wait until it is available.';
+ return null;
+}
+function toast(message){el('toast').textContent=message;el('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el('toast').classList.remove('show'),4100);}
+function monthTransitionNeeded(date){const key=monthKey(date),keys=knownMonths();return key&&!data.months[key]&&keys.length&&key>keys.at(-1);}
+function askNewMonth(nextDate,oldDate){const key=monthKey(nextDate),keys=knownMonths();if(!monthTransitionNeeded(nextDate))return false;
+ const prev=keys.at(-1),last=monthLastReport(prev),prevCum=last?cumForSaved(last):null,prevTarget=monthTarget(prev);
+ monthPending={date:nextDate,oldDate,from:prev,to:key};
+ el('monthPrevLabel').textContent=monthLabel(prev);
+ el('monthPrevCum').textContent=prevCum===null?'Not entered':fmtAmount(prevCum);
+ el('monthPrevPct').textContent=prevCum===null?'—':pct(prevCum,prevTarget)+'%';
+ el('monthPrevDaily').textContent=fmtAmount(monthDailySum(prev));
+ el('monthTransitionText').textContent=monthLabel(prev)+' is complete. Before opening '+monthLabel(key)+', check how much you achieved and confirm the new monthly target.';
+ el('nextMonthTarget').value=data.settings.monthTarget;
+ el('monthModal').hidden=false;setTimeout(()=>el('nextMonthTarget').focus(),0);
+ return true;
+}
+function confirmNewMonth(){if(!monthPending)return;const target=Number(field('nextMonthTarget'));
+ if(!Number.isInteger(target)||target<=0){toast('Enter a valid monthly target to start the new month.');return;}
+ const {from,to,date}=monthPending;const old=data.months[from];if(old){old.closed=true;old.closedAt=new Date().toISOString();}
+ data.months[to]={target,mode:'manual',anchorDate:null,anchorValue:0,confirmed:true,createdAt:new Date().toISOString()};
+ data.settings.monthTarget=target;saveData();monthPending=null;el('monthModal').hidden=true;el('date').value=date;previousDate=date;
+ editingId=null;el('manualCum').value='';refresh();renderHistory();renderMonthlyReport();renderBaselines();toast(monthLabel(to)+' started! Previous monthly reports are preserved. Cum Ach has been reset for the new month.');
+}
+function cancelNewMonth(){if(!monthPending)return;const old=monthPending.oldDate;monthPending=null;el('monthModal').hidden=true;
+ el('date').value=old&&monthKey(old)?old:todayISO();previousDate=field('date');refresh();toast('Monthly reset cancelled. No data was changed.');}
+function ensureMonthTransition(){const date=field('date');if(monthTransitionNeeded(date)){askNewMonth(date,previousDate||todayISO());return false;}return true;}
+function saveDraft(d,fixMode=false){
+ const error=validateDraft(d);if(error){toast(error);return false;}
+ if(!ensureMonthTransition())return false;
+ const duplicate=data.reports.find(r=>r.date===d.date&&r.id!==editingId);if(duplicate){toast('This date already has a report. Go to History and edit that report.');return false;}
+ const key=monthKey(d.date),config=monthConf(key,true);
+ if(fixMode){if(config.mode==='auto'){toast('This month is already fixed.');return false;}
+  if(d.manualCum===null||!Number.isInteger(d.manualCum)||d.manualCum<0){toast('Enter company-confirmed Cum Ach before FIX.');return false;}
+  const later=data.reports.filter(r=>monthKey(r.date)===key&&r.date>d.date);
+  if(later.length&&!confirm('There are '+later.length+' later saved report(s). FIX at this date will recalculate later cumulative totals. Continue?'))return false;
+  if(!confirm('FIX '+fmtAmount(d.manualCum)+' as the company-confirmed Cum Ach INCLUDING the '+dateLabel(d.date)+' sale? Future Day Ach will add automatically.'))return false;
+  config.mode='auto';config.anchorDate=d.date;config.anchorValue=d.manualCum;config.fixedAt=new Date().toISOString();
+ }
+ const report={...d,id:editingId||('r'+Date.now().toString(36)+Math.random().toString(36).slice(2,8)),updatedAt:new Date().toISOString()};
+ if(editingId){const at=data.reports.findIndex(r=>r.id===editingId);if(at<0){toast('Report not found.');return false;}data.reports[at]=report;}
+ else data.reports.push(report);
+ data.reports.sort((a,b)=>a.date.localeCompare(b.date));saveData();editingId=report.id;
+ refresh();renderHistory();renderMonthlyReport();renderBaselines();toast(fixMode?'Cumulative FIXED! Today is included exactly once. Next dates add sales automatically.':'Daily report saved successfully.');return true;
+}
+function saveReport(e){e.preventDefault();saveDraft(draft(),false);}
+function fixCum(){const d=draft();if(!requiresManual(d.date)){toast('Cum Ach is already FIXED for this date.');return;}
+ saveDraft(d,true);
+}
+function unfixCum(){const key=monthKey(field('date')),c=data.months[key];if(!c||c.mode!=='auto')return;
+ if(!confirm('Switch '+monthLabel(key)+' back to MANUAL? Existing auto calculated reports will keep their last Cum Ach values. New reports will need manual totals until FIX again.'))return;
+ const curr=data.reports.filter(r=>monthKey(r.date)===key).map(r=>({id:r.id,cum:cumForSaved(r)}));
+ curr.forEach(item=>{const r=data.reports.find(a=>a.id===item.id);r.manualCum=item.cum;});
+ c.mode='manual';c.anchorDate=null;c.anchorValue=0;c.fixedAt=null;saveData();
+ const saved=data.reports.find(r=>r.id===editingId);el('manualCum').value=saved?.manualCum??'';
+ refresh();renderHistory();renderMonthlyReport();renderBaselines();toast('Switched back to MANUAL. Your saved monthly reports are preserved.');
+}
+function resetForm(keepDate=true){const date=keepDate?field('date'):todayISO();el('reportForm').reset();el('date').value=date;editingId=null;el('manualCum').value='';previousDate=date;refresh();}
+function navigate(section){document.querySelectorAll('.section').forEach(node=>node.classList.toggle('active',node.id==='section-'+section));document.querySelectorAll('.nav').forEach(node=>node.classList.toggle('active',node.dataset.nav===section));const o={entry:['Sales overview','Create accurate company-format reports in seconds.'],monthly:['Monthly performance report','Printable A4 PDF with sales, bills and route insights.'],prices:['Product price book','Search a product family, choose its size, and see clear company prices and discounts.'],tools:['Sales calculators','Fast billing totals and market return percentage calculations.'],history:['Report history','Your saved sales, organized by month.'],settings:['Workspace settings','Monthly targets, cumulative modes, history and backup.']}[section]||['Sales overview','Create accurate company-format reports in seconds.'];el('pageTitle').textContent=o[0];el('pageSub').textContent=o[1];if(section==='history')renderHistory();if(section==='monthly')renderMonthlyReport();if(section==='prices')renderPriceBook();if(section==='settings'){loadSettings();renderBaselines();}window.scrollTo({top:0,behavior:'smooth'});}
+function renderHistory(){const months=knownMonths().reverse(),sel=el('historyMonth'),selected=sel.value;
+ sel.innerHTML='<option value="all">All months</option>'+months.map(m=>`<option value="${escapeHTML(m)}">${escapeHTML(monthLabel(m))}</option>`).join('');sel.value=months.includes(selected)?selected:'all';
+ const selectedMonth=sel.value,list=data.reports.filter(r=>selectedMonth==='all'||monthKey(r.date)===selectedMonth).slice().sort((a,b)=>b.date.localeCompare(a.date));
+ if(selectedMonth==='all')el('historySummary').innerHTML=`<span>Saved reports: <strong>${data.reports.length}</strong></span><span>Months: <strong>${months.length}</strong></span><span>Daily sales recorded: <strong>${escapeHTML(fmtAmount(data.reports.reduce((sum,r)=>sum+n(r.dayAch),0)))}</strong></span>`;
+ else{const last=monthLastReport(selectedMonth),cum=last?cumForSaved(last):null,mode=monthConf(selectedMonth).mode;
+  el('historySummary').innerHTML=`<span>Monthly target: <strong>${escapeHTML(fmtAmount(monthTarget(selectedMonth)))}</strong></span><span>Last Cum Ach: <strong>${cum===null?'Not entered':escapeHTML(fmtAmount(cum))}</strong></span><span>Monthly performance: <strong>${cum===null?'—':pct(cum,monthTarget(selectedMonth))+'%'}</strong></span><span>Saved daily sales: <strong>${escapeHTML(fmtAmount(monthDailySum(selectedMonth)))}</strong> · ${mode==='auto'?'FIXED':'MANUAL'}</span>`;}
+ if(!list.length){el('historyContent').innerHTML='<div class="empty"><b>No reports yet</b>Your saved daily reports will appear here.</div>';return;}
+ el('historyContent').innerHTML='<div class="table-wrap"><table class="table"><thead><tr><th>Date</th><th>Route</th><th>Day sales</th><th>Ach %</th><th>Cum Ach</th><th>Cum %</th><th>PRC</th><th class="right">Actions</th></tr></thead><tbody>'+list.map(r=>{const c=calculated(r,true);return `<tr><td><strong>${escapeHTML(dateLabel(r.date))}</strong></td><td>${escapeHTML(r.route)}</td><td class="mono">${escapeHTML(fmtAmount(r.dayAch))}</td><td>${c.dayPct}%</td><td class="mono">${c.cum===null?'—':escapeHTML(fmtAmount(c.cum))}</td><td>${c.monthPct===null?'—':c.monthPct+'%'}</td><td>${escapeHTML(r.prc)} / ${data.settings.plc}</td><td><div class="rowActions"><button class="btn small" data-action="copy" data-id="${escapeHTML(r.id)}">Copy</button><button class="btn small" data-action="edit" data-id="${escapeHTML(r.id)}">Edit</button><button class="btn small danger" data-action="delete" data-id="${escapeHTML(r.id)}">Delete</button></div></td></tr>`;}).join('')+'</tbody></table></div>';
+}
+
+// Monthly reports use saved entries only; blank bill counts are UNKNOWN, not zero.
+const BILL_DAILY_TARGET = 30;
+const fullRatio=(v,total)=>total>0?(100*v/total).toFixed(1)+'%':'—';
+const smallInt=v=>Math.round(n(v)).toLocaleString('en-US');
+function monthReportData(key){
+ const list=data.reports.filter(r=>monthKey(r.date)===key).slice().sort((a,b)=>a.date.localeCompare(b.date));
+ const config=monthConf(key),last=list.at(-1)||null,lastCum=last?cumForSaved(last):null,target=monthTarget(key);
+ const salesTotal=list.reduce((sum,r)=>sum+n(r.dayAch),0),salesPlan=list.length*n(data.settings.dayPlan);
+ const billReports=list.filter(r=>Number.isInteger(r.dailyBills)&&r.dailyBills>=0), bills=billReports.reduce((sum,r)=>sum+r.dailyBills,0);
+ const hits=billReports.filter(r=>r.dailyBills>=BILL_DAILY_TARGET).length,misses=billReports.length-hits;
+ const hitSalesDays=list.filter(r=>n(r.dayAch)>=data.settings.dayPlan).length;
+ const retRows=list.filter(r=>r.mrValue!==null&&r.mrValue!==undefined), mrTotal=retRows.reduce((sum,r)=>sum+n(r.mrValue),0);
+ const outletRows=list.filter(r=>r.newOutlet!==null&&r.newOutlet!==undefined), newOutlets=outletRows.reduce((sum,r)=>sum+n(r.newOutlet),0);
+ const prc=list.reduce((sum,r)=>sum+n(r.prc),0),tlcs=list.filter(r=>r.tlc!==null&&r.tlc!==undefined);
+ const best=list.reduce((high,r)=>!high||r.dayAch>high.dayAch?r:high,null);
+ const products={cr230:0,cr500:0,w225:0,w310:0,w375:0};const productEntered={cr230:0,cr500:0,w225:0,w310:0,w375:0};
+ for(const r of list){for(const k of Object.keys(products)){if(r.products?.[k]!==null&&r.products?.[k]!==undefined){products[k]+=n(r.products[k]);productEntered[k]++;}}}
+ const routes=new Map();for(const r of list){const id=r.route.trim().toLowerCase();if(!routes.has(id))routes.set(id,{name:r.route,days:0,sales:0,bills:0,billDays:0,prc:0});const rt=routes.get(id);rt.days++;rt.sales+=n(r.dayAch);rt.prc+=n(r.prc);if(Number.isInteger(r.dailyBills)){rt.bills+=r.dailyBills;rt.billDays++;}}
+ return {key,list,config,last,lastCum,target,salesTotal,salesPlan,billReports,bills,hits,misses,hitSalesDays,retRows,mrTotal,outletRows,newOutlets,prc,tlcs,best,products,productEntered,routes:[...routes.values()].sort((a,b)=>b.sales-a.sales)};
+}
+function reportPct(v,total){return total?Number((v/total*100).toFixed(1)):null;}
+function pill(value){return value?'<span class="monthly-status">YES</span>':'<span class="monthly-status warn">NO</span>';}
+function navToMonth(key){navigate('monthly');if([...el('monthlyMonth').options].some(o=>o.value===key)){el('monthlyMonth').value=key;renderMonthlyReport();}}
+function renderMonthlyReport(){
+ const select=el('monthlyMonth'),previous=select.value,keys=knownMonths().filter(k=>data.reports.some(r=>monthKey(r.date)===k)).reverse();
+ select.innerHTML=keys.map(k=>`<option value="${escapeHTML(k)}">${escapeHTML(monthLabel(k))}</option>`).join('');
+ const selected=keys.includes(previous)?previous:keys[0];if(selected)select.value=selected;
+ const wrap=el('monthlySheet'),button=el('printMonthlyBtn');button.disabled=!selected;
+ if(!selected){wrap.innerHTML='<div class="monthly-empty"><b>No saved months yet</b>Save your first daily report. The printable monthly summary will be built automatically.</div>';return;}
+ const m=monthReportData(selected),esc=escapeHTML;
+ const companyValue=m.lastCum===null?'Not entered':fmtAmount(m.lastCum),companyPct=m.lastCum===null?'—':fullRatio(m.lastCum,m.target);
+ const salesBar=m.lastCum===null?0:Math.min(100,m.lastCum/m.target*100);
+ const billPlan=BILL_DAILY_TARGET*m.billReports.length,billPct=fullRatio(m.bills,billPlan),billBar=billPlan?Math.min(100,m.bills/billPlan*100):0;
+ const state=m.config?.closed?'MONTH CLOSED':'IN PROGRESS', salesVsPlan=fullRatio(m.salesTotal,m.salesPlan);
+ const billMessage=m.billReports.length?`You reached ${BILL_DAILY_TARGET}+ bills on <b>${m.hits}</b> of <b>${m.billReports.length}</b> bill-recorded days. Total bills ${smallInt(m.bills)} against ${smallInt(billPlan)} planned for those days (${billPct}).`:'Daily bill counts have not been entered. The report cannot reliably calculate total bills or 30-bill achievement from PRC alone.';
+ const cumulativeMessage=m.lastCum===null?'No Cumulative Achievement recorded. Enter or FIX Cum Ach to enable monthly target tracking.':`Latest reported Cum Ach is <b>${fmtAmount(m.lastCum)}</b> (${companyPct} of the ${fmtAmount(m.target)} monthly target). This is <b>${m.config?.mode==='auto'?'FIXED / AUTO':'MANUAL / NOT CONFIRMED'}</b>. The total of day sales SAVED in this app is ${fmtAmount(m.salesTotal)}; these may differ if earlier days were not recorded.`;
+ const productRows=[['CR CR 230g','cr230'],['CR CR 500gr','cr500'],['Wafers 225gr','w225'],['Wafers 310gr','w310'],['Wafers 375gr','w375']];
+ wrap.innerHTML=`
+ <div class="monthly-letterhead"><div><small>PERSONAL SALES PERFORMANCE</small><h2>MONTHLY SALES REPORT</h2><p><b>${esc(data.settings.name)}</b> · ${esc(monthLabel(selected))} · ${esc(state)}</p></div><div class="monthly-tag">MONTHLY REVIEW<br>${esc(selected)}</div></div>
+ <div class="monthly-kpi-grid">
+ <div class="monthly-kpi"><small>MONTH TARGET</small><b>${esc(fmtAmount(m.target))}</b><em>Target for ${esc(monthLabel(selected))}</em></div>
+ <div class="monthly-kpi emph"><small>LATEST CUM ACH</small><b>${esc(companyValue)}</b><em>${esc(companyPct)} of monthly target</em></div>
+ <div class="monthly-kpi ${m.lastCum!==null&&m.lastCum>=m.target?'good':''}"><small>MONTH ACHIEVEMENT</small><b>${esc(companyPct)}</b><em>${m.lastCum===null?'Not available':m.lastCum>=m.target?'Monthly target reached':'Remaining '+esc(fmtAmount(Math.max(0,m.target-m.lastCum)))}</em></div>
+ <div class="monthly-kpi"><small>SAVED DAY SALES</small><b>${esc(fmtAmount(m.salesTotal))}</b><em>${m.list.length} saved reporting days (not necessarily full month)</em></div>
+ <div class="monthly-kpi"><small>TOTAL BILLS RECORDED</small><b>${m.billReports.length?esc(smallInt(m.bills)):'—'}</b><em>${m.billReports.length} of ${m.list.length} days contain bill data</em></div>
+ <div class="monthly-kpi ${m.billReports.length&&m.misses===0?'good':''}"><small>DAYS WITH 30+ BILLS</small><b>${m.billReports.length?m.hits+' / '+m.billReports.length:'—'}</b><em>${m.billReports.length?'Missed 30-bill mark on '+m.misses+(m.misses===1?' day':' days'):'Add daily bills to track this'}</em></div>
+ <div class="monthly-kpi"><small>BILL TARGET PERFORMANCE</small><b>${esc(billPct)}</b><em>30 × ${m.billReports.length} bill-recorded days</em></div>
+ <div class="monthly-kpi"><small>DAY SALES TARGET HIT</small><b>${m.hitSalesDays} / ${m.list.length}</b><em>Days with Day Ach ≥ ${esc(fmtAmount(data.settings.dayPlan))}</em></div>
+ </div>
+ <div class="monthly-progress"><div><label><span>Monthly company cumulative vs target</span><b>${esc(companyPct)}</b></label><div class="track"><div class="fill" style="width:${salesBar}%"></div></div></div><div><label><span>Recorded bills vs 30/day goal</span><b>${esc(billPct)}</b></label><div class="track"><div class="fill green" style="width:${billBar}%"></div></div></div></div>
+ <h3 class="monthly-section-title">Performance summary</h3>
+ <div class="monthly-callout"><b>Sales:</b> ${cumulativeMessage}<br><b>Billing:</b> ${billMessage}<br><b>Daily plan:</b> Achieved the daily sales plan on <b>${m.hitSalesDays}</b> of <b>${m.list.length}</b> saved days. The sum of saved daily sales is <b>${salesVsPlan}</b> of the combined daily plan for those dates.</div>
+ <div class="monthly-secondary">
+ <div class="item"><span>Reporting days</span><strong>${m.list.length}</strong></div>
+ <div class="item"><span>Avg daily sales</span><strong>${esc(fmtAmount(m.list.length?m.salesTotal/m.list.length:0))}</strong></div>
+ <div class="item"><span>Avg bills (recorded days)</span><strong>${m.billReports.length?(m.bills/m.billReports.length).toFixed(1):'—'}</strong></div>
+ <div class="item"><span>Missed 30-bill days</span><strong>${m.billReports.length?m.misses:'—'}</strong></div>
+ <div class="item"><span>PRC total (all dates)</span><strong>${esc(smallInt(m.prc))}</strong></div>
+ <div class="item"><span>Reported market returns</span><strong>${m.retRows.length?esc(fmtAmount(m.mrTotal)):'—'}</strong></div>
+ <div class="item"><span>New outlet visits reported</span><strong>${m.outletRows.length?esc(smallInt(m.newOutlets)):'—'}</strong></div>
+ <div class="item"><span>Best saved sales day</span><strong>${m.best?esc(dateLabel(m.best.date)):'—'}</strong></div>
+ </div>
+ <h3 class="monthly-section-title">Route-wise performance</h3>
+ <div class="monthly-table-scroll"><table class="monthly-table"><thead><tr><th>Route</th><th class="num">Days</th><th class="num">Saved sales</th><th class="num">Recorded bills</th><th class="num">PRC sum</th></tr></thead><tbody>
+ ${m.routes.map(r=>`<tr><td>${esc(r.name)}</td><td class="num">${r.days}</td><td class="num">${esc(fmtAmount(r.sales))}</td><td class="num">${r.billDays?esc(smallInt(r.bills)):'—'}${r.billDays<r.days?' *':''}</td><td class="num">${esc(smallInt(r.prc))}</td></tr>`).join('')}
+ </tbody></table></div>
+ <h3 class="monthly-section-title">Key products sold (entered quantities)</h3>
+ <div class="monthly-table-scroll"><table class="monthly-table"><thead><tr><th>Product</th><th class="num">Monthly quantity</th><th class="num">Days recorded</th></tr></thead><tbody>
+ ${productRows.map(([label,k])=>`<tr><td>${label}</td><td class="num">${m.productEntered[k]?esc(smallInt(m.products[k])):'—'}</td><td class="num">${m.productEntered[k]} / ${m.list.length}</td></tr>`).join('')}
+ </tbody></table></div>
+ <div class="monthly-daily-block"><h3 class="monthly-section-title">Daily sales &amp; billing breakdown</h3>
+ <div class="monthly-table-scroll"><table class="monthly-table"><thead><tr><th>Date</th><th>Route</th><th class="num">Sales (Rs.)</th><th class="num">Day Ach</th><th class="num">PRC</th><th class="num">Bills</th><th>30+ Bills</th><th class="num">MR (Rs.)</th></tr></thead><tbody>
+ ${m.list.map(r=>`<tr><td>${esc(dateLabel(r.date))}</td><td>${esc(r.route)}</td><td class="num">${esc(smallInt(r.dayAch))}</td><td class="num">${esc(fullRatio(r.dayAch,data.settings.dayPlan))}</td><td class="num">${r.prc??'—'}</td><td class="num">${Number.isInteger(r.dailyBills)?r.dailyBills:'—'}</td><td>${Number.isInteger(r.dailyBills)?pill(r.dailyBills>=BILL_DAILY_TARGET):'Not given'}</td><td class="num">${r.mrValue===null||r.mrValue===undefined?'—':esc(smallInt(r.mrValue))}</td></tr>`).join('')}
+ <tr class="total"><td colspan="2">TOTAL — ${m.list.length} saved days</td><td class="num">${esc(smallInt(m.salesTotal))}</td><td class="num">${esc(salesVsPlan)}</td><td class="num">${esc(smallInt(m.prc))}</td><td class="num">${m.billReports.length?esc(smallInt(m.bills)):'—'}</td><td>${m.billReports.length?m.hits+' / '+m.billReports.length:'—'}</td><td class="num">${m.retRows.length?esc(smallInt(m.mrTotal)):'—'}</td></tr></tbody></table></div>
+ <p class="monthly-note"><b>Data interpretation:</b> PRC (shops visited/covered) is kept separate from bills issued; the monthly bill KPI uses only the dedicated "Bills issued today" field. Missing entries display as — and do not count as zero. The 30/day bill plan is applied only to dates with an entered bill count; days without sales reports are not treated as zero-sales days. Month target performance uses the latest saved Cum Ach, while "Saved Day Sales" sums entries saved here. Market returns and product quantities are included only when provided.</p>
+ <div class="monthly-signoff"><span>Prepared for ${esc(data.settings.name)} · Personal Sales Desk</span><span>${esc(monthLabel(selected))} · Generated from locally saved records</span></div></div>
+ `;
+}
+function printMonthlyReport(){const key=el('monthlyMonth').value;if(!key){toast('Save a daily report before printing.');return;}
+ renderMonthlyReport();document.body.classList.add('printing-month');
+ const previousTitle=document.title;document.title='K_Abirthan_Monthly_Sales_'+key;
+ const clean=()=>{document.body.classList.remove('printing-month');document.title=previousTitle;};
+ window.addEventListener('afterprint',clean,{once:true});
+ try{window.print();}finally{setTimeout(clean,15000);}
+}
+
+function fillReport(r){editingId=r.id;for(const id of ['date','route','dayAch','prc','dailyBills','tlc','newOutlet','mrValue','mrPercent'])el(id).value=r[id]??'';
+ for(const id of ['cr230','cr500','w225','w310','w375'])el(id).value=r.products[id]??'';
+ el('manualCum').value=r.manualCum??'';previousDate=r.date;navigate('entry');refresh();toast('Editing '+dateLabel(r.date));}
+async function copyText(content){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(content);}else{const ta=document.createElement('textarea');ta.value=content;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();if(!ok)throw Error('Clipboard unavailable');}toast('Company-format report copied!');}catch(err){toast('Copy unavailable. Long-press and copy the report text.');}}
+function renderBaselines(){const keys=knownMonths().reverse(),div=el('baselinesList');if(!keys.length){div.innerHTML='<p class="fieldnote">No month has been started yet. Your first saved report creates its monthly record.</p>';return;}
+ div.innerHTML=keys.map(key=>{const c=monthConf(key),last=monthLastReport(key),cum=last?cumForSaved(last):null;
+ return `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #eef2f7;flex-wrap:wrap"><div><strong>${escapeHTML(monthLabel(key))}</strong><div class="fieldnote">Target ${escapeHTML(fmtAmount(monthTarget(key)))} · ${c.mode==='auto'?'FIXED + AUTO':'MANUAL'}${c.closed?' · Closed':''}<br>Last Cum Ach: ${cum===null?'—':escapeHTML(fmtAmount(cum))} · Saved Day Ach: ${escapeHTML(fmtAmount(monthDailySum(key)))}</div></div><div class="btns"><button class="btn small" data-target="${escapeHTML(key)}">Edit target</button>${c.mode==='auto'?`<button class="btn small" data-fixed="${escapeHTML(key)}">Adjust fixed total</button>`:''}</div></div>`;}).join('');
+}
+function loadSettings(){el('setName').value=data.settings.name;el('setPlan').value=data.settings.dayPlan;el('setPlc').value=data.settings.plc;
+ const key=monthKey(field('date'))||todayISO().slice(0,7),latest=knownMonths().at(-1)||key,chosen=data.months[key]?key:latest;
+ el('setTarget').value=monthTarget(chosen);el('targetScope').textContent='Monthly target currently applies to '+monthLabel(chosen)+'. Earlier month targets are stored separately. Name, Day Plan and PLC changes can affect old report fields.';el('settingsForm').dataset.targetMonth=chosen;}
+function saveSettings(e){e.preventDefault();const name=field('setName').trim(),monthTargetVal=Number(field('setTarget')),dayPlan=Number(field('setPlan')),plc=Number(field('setPlc'));
+ if(!name||![monthTargetVal,dayPlan,plc].every(v=>Number.isInteger(v)&&v>0)){toast('Enter valid whole-number settings.');return;}
+ const globalChanged=name!==data.settings.name||dayPlan!==data.settings.dayPlan||plc!==data.settings.plc;
+ if(globalChanged&&data.reports.length&&!confirm('Changing Name, Day Plan or PLC also changes old reports. Continue?'))return;
+ const key=el('settingsForm').dataset.targetMonth||monthKey(field('date'));
+ const cfg=monthConf(key,true);cfg.target=monthTargetVal;cfg.updatedAt=new Date().toISOString();data.settings={name,monthTarget:monthTargetVal,dayPlan,plc};saveData();refresh();renderBaselines();renderHistory();renderMonthlyReport();toast('Monthly target and company details updated. Earlier month targets were preserved.');}
+function download(name,contents,mime){const b=new Blob([contents],{type:mime}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},250);}
+function csvCell(v){return '"'+String(v??'').replace(/"/g,'""')+'"';}
+function exportCSV(){const rows=[['Date','Route','Name','Monthly Target','Day Plan','Day Ach','Day Ach %','Cum Ach','Cum %','Cum Mode','PLC','PRC','PRC %','Daily Bills','TLC','MR Value','MR %','CR CR 230g','CR CR 500gr','Wafers 225gr','Wafers 310gr','Wafers 375gr','New Outlet']];
+ for(const r of data.reports.slice().sort((a,b)=>a.date.localeCompare(b.date))){const c=calculated(r,true),m=monthConf(monthKey(r.date));rows.push([dateLabel(r.date),r.route,data.settings.name,monthTarget(r.date),data.settings.dayPlan,r.dayAch,c.dayPct,c.cum,c.monthPct,m.mode,data.settings.plc,r.prc,c.prcPct,r.dailyBills??'',r.tlc,r.mrValue,c.mrPct,r.products.cr230??0,r.products.cr500??0,r.products.w225??0,r.products.w310??0,r.products.w375??0,r.newOutlet??'']);}
+ download('Abirthan_Sales_History.csv','\ufeff'+rows.map(row=>row.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8');toast('CSV exported.');}
+async function importBackup(file){try{const raw=JSON.parse(await file.text()),parsed=upgrade(raw);if(!parsed)throw Error('Unexpected backup format');if(!confirm('Importing will REPLACE saved sales and settings on this device. Continue?'))return;
+ data=parsed;saveData();monthPending=null;el('monthModal').hidden=true;resetForm(false);loadSettings();renderHistory();renderMonthlyReport();renderBaselines();toast('Backup restored!');}catch(err){toast('Backup not imported: '+err.message);}}
+function wire(){el('date').value=todayISO();previousDate=field('date');document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.nav)));
+ pbWire();toolsWire();liveMRWire();
+ el('reportForm').addEventListener('input',refresh);
+ el('reportForm').addEventListener('submit',saveReport);
+ el('date').addEventListener('change',()=>{if(monthTransitionNeeded(field('date'))){askNewMonth(field('date'),previousDate);return;}
+  if(editingId){const existing=data.reports.find(r=>r.id===editingId);if(existing&&existing.date!==field('date')){editingId=null;el('manualCum').value='';}}
+  previousDate=field('date');refresh();});
+ el('fixCumBtn').addEventListener('click',fixCum);el('unfixCumBtn').addEventListener('click',unfixCum);
+ el('confirmMonthBtn').addEventListener('click',confirmNewMonth);el('cancelMonthBtn').addEventListener('click',cancelNewMonth);
+ el('clearBtn').addEventListener('click',()=>resetForm(true));el('copyBtn').addEventListener('click',()=>copyText(currentText));el('waBtn').addEventListener('click',()=>{if(!el('waBtn').disabled)window.open('https://wa.me/?text='+encodeURIComponent(currentText),'_blank','noopener,noreferrer');});
+ el('monthlyMonth').addEventListener('change',renderMonthlyReport);
+ el('printMonthlyBtn').addEventListener('click',printMonthlyReport);
+ el('viewClosingReportBtn').addEventListener('click',()=>{if(!monthPending)return;const from=monthPending.from;monthPending=null;el('monthModal').hidden=true;el('date').value=previousDate;navToMonth(from);toast('Previous month report shown. Reset has not been confirmed; you can return to Daily Entry later.');});
+ el('historyMonth').addEventListener('change',renderHistory);el('historyContent').addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const r=data.reports.find(row=>row.id===b.dataset.id);if(!r)return;
+ if(b.dataset.action==='copy')copyText(formatReport(r,calculated(r,true)));
+ if(b.dataset.action==='edit')fillReport(r);
+ if(b.dataset.action==='delete'&&confirm('Delete report for '+dateLabel(r.date)+'? Later AUTO cumulative totals will be recalculated.')){const key=monthKey(r.date),c=monthConf(key);
+  if(c.mode==='auto'&&c.anchorDate===r.date){toast('This is the FIX anchor day. Switch month back to Manual before deleting it.');return;}
+  data.reports=data.reports.filter(item=>item.id!==r.id);saveData();if(editingId===r.id)resetForm(true);renderHistory();renderMonthlyReport();renderBaselines();refresh();toast('Report deleted.');}});
+ el('settingsForm').addEventListener('submit',saveSettings);
+ el('baselinesList').addEventListener('click',e=>{const bt=e.target.closest('[data-target]'),bf=e.target.closest('[data-fixed]');if(bt){const key=bt.dataset.target;const value=prompt('Set '+monthLabel(key)+' monthly target:',String(monthTarget(key)));if(value===null)return;if(!/^\d+$/.test(value.trim())||Number(value)<=0){toast('Enter a valid target greater than zero.');return;}
+  if(!confirm('Update '+monthLabel(key)+' target? That month’s Cum % will change; sales will not.'))return;monthConf(key,true).target=Number(value);saveData();renderBaselines();renderHistory();refresh();loadSettings();toast('Monthly target updated.');}
+  if(bf){const key=bf.dataset.fixed,c=monthConf(key),value=prompt('Company-corrected FIXED Cum Ach for '+monthLabel(key)+':',String(c.anchorValue));if(value===null)return;if(!/^\d+$/.test(value.trim())){toast('Enter a valid whole number.');return;}
+   if(!confirm('Change the fixed cumulative amount to '+fmtAmount(Number(value))+'? Future AUTO totals for this month will be recalculated.'))return;
+   c.anchorValue=Number(value);saveData();renderBaselines();renderHistory();refresh();toast('Fixed Cum Ach corrected.');}}
+ );
+ el('exportBtn').addEventListener('click',()=>{download('Abirthan_Sales_Backup_'+todayISO()+'.json',JSON.stringify(data,null,2),'application/json');toast('Private JSON backup downloaded.');});
+ el('csvBtn').addEventListener('click',exportCSV);el('importBtn').addEventListener('click',()=>el('importFile').click());el('importFile').addEventListener('change',async e=>{if(e.target.files[0])await importBackup(e.target.files[0]);e.target.value='';});
+ el('resetBtn').addEventListener('click',()=>{if(confirm('Permanently delete ALL saved months and reports?')&&confirm('Only a backup can restore deleted data. Continue?')){data.reports=[];data.months={};saveData();resetForm(false);renderHistory();renderMonthlyReport();renderBaselines();toast('All sales records cleared.');}});
+ el('sideLock').addEventListener('click',()=>toast('No PIN required — this site opens directly.'));el('pinChangeForm').addEventListener('submit',e=>{e.preventDefault();toast('PIN is disabled in this version.');});
+}
+function toHex(buf){return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+function fromHex(hex){return new Uint8Array((hex.match(/.{2}/g)||[]).map(h=>parseInt(h,16)));}
+async function hashPin(pin,salt){const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(pin),'PBKDF2',false,['deriveBits']);const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt:fromHex(salt),iterations:120000,hash:'SHA-256'},key,256);return toHex(bits);}
+function hasSecureCrypto(){return !!(window.crypto&&crypto.subtle&&crypto.getRandomValues);}
+function makeSalt(){return toHex(crypto.getRandomValues(new Uint8Array(16)));}
+async function verifyPin(pin){const stored=JSON.parse(localStorage.getItem(PIN_STORE)||'null');return !!stored&&(await hashPin(pin,stored.salt))===stored.hash;}
+async function changePIN(e){e.preventDefault();if(!hasSecureCrypto()){toast('Secure browser context required to change PIN.');return;}const old=field('oldPin'),newPin=field('newPin');if(!/^\d{6}$/.test(newPin)){toast('New PIN must be exactly six digits.');return;}if(!await verifyPin(old)){toast('Current PIN incorrect.');return;}const salt=makeSalt();localStorage.setItem(PIN_STORE,JSON.stringify({salt,hash:await hashPin(newPin,salt)}));el('pinChangeForm').reset();toast('PIN changed successfully.');}
+function unlock(){sessionStorage.setItem(SESSION,'true');el('lockscreen').hidden=true;el('app').hidden=false;el('pinInput').value='';el('pinConfirm').value='';refresh();bumpLockTimer();if(monthTransitionNeeded(field('date')))askNewMonth(field('date'),previousDate);}
+function lock(){toast('No PIN needed.');}
+function bumpLockTimer(){clearTimeout(lockTimer);}
+function resetLockScreen(){const exists=!!localStorage.getItem(PIN_STORE);el('lockTitle').textContent=exists?'Welcome back, Abirthan':'Your private sales desk';el('lockDesc').textContent=exists?'Enter your PIN to unlock your sales reports.':'Create a 6-digit PIN. Your reports will stay in this browser.';el('confirmWrap').hidden=exists;el('pinConfirm').required=!exists;el('unlockBtn').textContent=exists?'Unlock My Workspace':'Create PIN & Open';el('lockError').textContent='';}
+async function handleLockForm(e){e.preventDefault();const pin=field('pinInput');if(!/^\d{6}$/.test(pin)){el('lockError').textContent='Enter exactly six digits.';return;}if(!hasSecureCrypto()){el('lockError').textContent='Open this site in Safari/Chrome with HTTPS or from a secure local file.';return;}el('unlockBtn').disabled=true;try{if(!localStorage.getItem(PIN_STORE)){if(field('pinConfirm')!==pin){el('lockError').textContent='PINs do not match.';return;}const salt=makeSalt();localStorage.setItem(PIN_STORE,JSON.stringify({salt,hash:await hashPin(pin,salt)}));unlock();}else if(await verifyPin(pin))unlock();else el('lockError').textContent='Incorrect PIN. Please try again.';}catch(err){el('lockError').textContent='Could not verify the PIN. Please open in a secure browser.';}finally{el('unlockBtn').disabled=false;}}
+function init(){wire();resetLockScreen();el('lockForm').addEventListener('submit',handleLockForm);['click','keydown','pointerdown'].forEach(ev=>el('app').addEventListener(ev,bumpLockTimer,{passive:true}));unlock();if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{});}
+init();
+})();
+</script>
+</body>
+</html>
